@@ -7,13 +7,15 @@
   let currentMonth = new Date().getMonth(); // 0-indexed
 
   // ── Render Calendar ────────────────────────────────────────────────────────
-  function renderCalendar() {
+  async function renderCalendar() {
     const monthLabel = document.getElementById('calMonthLabel');
     const calDays    = document.getElementById('calDays');
     const todayStr   = new Date().toISOString().split('T')[0];
 
     const monthName = new Date(currentYear, currentMonth, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
     monthLabel.textContent = monthName;
+    
+    const allBookings = await PodData.getBookings();
 
     calDays.innerHTML = '';
 
@@ -39,7 +41,7 @@
     // Day cells
     for (let day = 1; day <= daysInMon; day++) {
       const dateStr = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-      const bookings = PodData.getBookingsForDate(dateStr);
+      const bookings = allBookings.filter(b => b.date === dateStr);
       const booked   = bookings.length;
 
       let statusClass = '';
@@ -69,7 +71,7 @@
   }
 
   // ── Select Day ─────────────────────────────────────────────────────────────
-  function selectDay(dateStr, clickedCell) {
+  async function selectDay(dateStr, clickedCell) {
     document.querySelectorAll('.cal-day').forEach(c => c.classList.remove('selected'));
     clickedCell.classList.add('selected');
 
@@ -77,7 +79,7 @@
     const label = d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
     document.getElementById('panelTitle').textContent = label;
 
-    const bookings = PodData.getBookingsForDate(dateStr);
+    const bookings = await PodData.getBookingsForDate(dateStr);
     const panelBookings = document.getElementById('panelBookings');
     const panelEmpty    = document.getElementById('panelEmpty');
     panelBookings.innerHTML = '';

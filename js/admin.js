@@ -22,8 +22,8 @@
   }
 
   // ── Render Stats ───────────────────────────────────────────────────────────
-  function renderStats() {
-    const s = PodData.getStats();
+  async function renderStats() {
+    const s = await PodData.getStats();
     animateCount('stat-total',     s.total);
     animateCount('stat-upcoming',  s.upcoming);
     animateCount('stat-editing',   s.editing);
@@ -92,12 +92,14 @@
 
     // Status change handlers
     tbody.querySelectorAll('.status-select').forEach(sel => {
-      sel.addEventListener('change', function() {
+      sel.addEventListener('change', async function() {
         const id = this.dataset.id;
         const newStatus = this.value;
-        PodData.updateStatus(id, newStatus);
+        this.disabled = true;
+        await PodData.updateStatus(id, newStatus);
+        this.disabled = false;
         this.dataset.status = newStatus;
-        renderStats();
+        await renderStats();
         showToast(`Status updated to "${newStatus}"`);
       });
     });
@@ -116,14 +118,15 @@
   }
 
   // ── Search & Filter ────────────────────────────────────────────────────────
-  function getFiltered() {
+  async function getFiltered() {
     const searchInput = document.getElementById('searchInput');
     const filterStatus = document.getElementById('filterStatus');
     
     const query  = searchInput ? searchInput.value.toLowerCase() : '';
     const status = filterStatus ? filterStatus.value : '';
     
-    return PodData.getBookings().filter(b => {
+    const bookings = await PodData.getBookings();
+    return bookings.filter(b => {
       const matchQ = !query || b.name.toLowerCase().includes(query) || b.podcastTitle.toLowerCase().includes(query) || b.email.toLowerCase().includes(query);
       const matchS = !status || b.status === status;
       return matchQ && matchS;
@@ -131,23 +134,25 @@
   }
 
   const searchInput = document.getElementById('searchInput');
-  if (searchInput) searchInput.addEventListener('input', () => renderTable(getFiltered()));
+  if (searchInput) searchInput.addEventListener('input', async () => renderTable(await getFiltered()));
   
   const filterStatus = document.getElementById('filterStatus');
-  if (filterStatus) filterStatus.addEventListener('change', () => renderTable(getFiltered()));
+  if (filterStatus) filterStatus.addEventListener('change', async () => renderTable(await getFiltered()));
 
   // ── Delete Modal ───────────────────────────────────────────────────────────
   document.getElementById('cancelDelete').addEventListener('click', () => {
     document.getElementById('deleteModal').classList.remove('open');
     pendingDeleteId = null;
   });
-  document.getElementById('confirmDelete').addEventListener('click', () => {
+  document.getElementById('confirmDelete').addEventListener('click', async () => {
     if (pendingDeleteId) {
-      PodData.deleteBooking(pendingDeleteId);
+      document.getElementById('confirmDelete').disabled = true;
+      await PodData.deleteBooking(pendingDeleteId);
       pendingDeleteId = null;
       document.getElementById('deleteModal').classList.remove('open');
-      renderStats();
-      renderTable(getFiltered());
+      document.getElementById('confirmDelete').disabled = false;
+      await renderStats();
+      renderTable(await getFiltered());
       showToast('Booking deleted.', 'success');
     }
   });
@@ -158,7 +163,10 @@
   });
 
   // ── Init ───────────────────────────────────────────────────────────────────
-  PodData.initData();
-  renderStats();
-  renderTable(getFiltered());
+  async function init() {
+    PodData.initData();
+    await renderStats();
+    renderTable(await getFiltered());
+  }
+  init();
 })();

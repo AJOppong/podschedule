@@ -30,8 +30,8 @@
   }
 
   // ── Render Slots ───────────────────────────────────────────────────────────
-  function renderSlots(date) {
-    const slots = PodData.getSlotsForDate(date);
+  async function renderSlots(date) {
+    const slots = await PodData.getSlotsForDate(date);
     slotGrid.innerHTML = '';
     slots.forEach(({ time, available }) => {
       const btn = document.createElement('button');
@@ -58,29 +58,29 @@
   }
 
   // ── Check Availability ─────────────────────────────────────────────────────
-  checkDateBtn.addEventListener('click', () => {
+  checkDateBtn.addEventListener('click', async () => {
     const date = dateInput.value;
     if (!date) { showToast('Please select a date.', 'error'); return; }
     if (date < todayStr) { showToast('Cannot book a date in the past.', 'error'); return; }
     selectedTime = null;
     formSection.style.display = 'none';
-    renderSlots(date);
+    await renderSlots(date);
   });
 
   // Also trigger on date change
-  dateInput.addEventListener('change', () => {
+  dateInput.addEventListener('change', async () => {
     const date = dateInput.value;
     if (!date || date < todayStr) return;
     selectedTime = null;
     formSection.style.display = 'none';
-    renderSlots(date);
+    await renderSlots(date);
   });
 
   // Initial load
   renderSlots(todayStr);
 
   // ── Form Submit ────────────────────────────────────────────────────────────
-  bookingForm.addEventListener('submit', (e) => {
+  bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const date  = dateInput.value;
     const name  = document.getElementById('guestName').value.trim();
@@ -92,9 +92,10 @@
     if (!name || !email || !title) { showToast('Please fill in all fields.', 'error'); return; }
 
     // Double-check availability at submit time
-    if (!PodData.isSlotAvailable(date, selectedTime)) {
+    const isAvail = await PodData.isSlotAvailable(date, selectedTime);
+    if (!isAvail) {
       showToast('This slot was just booked! Please choose another.', 'error');
-      renderSlots(date);
+      await renderSlots(date);
       return;
     }
 
@@ -102,7 +103,7 @@
     submitBtn.textContent = '⏳ Booking...';
 
     // Save booking
-    const booking = PodData.addBooking({ name, email, podcastTitle: title, date, time: selectedTime });
+    const booking = await PodData.addBooking({ name, email, podcastTitle: title, date, time: selectedTime });
 
     // Simulate email confirmation delay
     setTimeout(() => {

@@ -22,13 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Load Data
-    function renderBoard() {
+    async function renderBoard() {
         // Clear all
         Object.values(cols).forEach(col => col.innerHTML = '');
         
         const counts = { 'Booked': 0, 'Recorded': 0, 'Editing': 0, 'Published': 0 };
 
-        window.PodData.getBookings().forEach(b => {
+        const bookings = await window.PodData.getBookings();
+        bookings.forEach(b => {
             const card = buildCard(b);
             if(cols[b.status]) {
                 cols[b.status].appendChild(card);
@@ -98,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.dataTransfer.dropEffect = 'move';
         });
 
-        col.addEventListener('drop', e => {
+        col.addEventListener('drop', async e => {
             e.preventDefault();
             if(!draggedItem) return;
 
@@ -106,10 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const id = draggedItem.dataset.id;
 
             // Update state
-            window.PodData.updateStatus(id, targetStatus);
+            await window.PodData.updateStatus(id, targetStatus);
             
             // Re-render
-            renderBoard();
+            await renderBoard();
         });
     });
 
