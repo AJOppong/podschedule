@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Seed Supabase Database</title>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <style>
+    body { font-family: sans-serif; padding: 40px; background: #f8fafc; color: #1e293b; text-align: center; }
+    .card { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto; }
+    h1 { margin-top: 0; }
+    button { background: #7c5cfc; color: white; border: none; padding: 12px 24px; font-size: 1.1rem; border-radius: 6px; cursor: pointer; transition: 0.2s; font-weight: 600; }
+    button:hover { background: #6040d8; transform: translateY(-1px); }
+    button:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; }
+    #log { margin-top: 20px; font-family: monospace; background: #1e293b; color: #10b981; padding: 16px; border-radius: 8px; text-align: left; height: 300px; overflow-y: auto; white-space: pre-wrap; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>PodSchedule Demo Data Injector</h1>
+    <p style="margin-bottom: 24px;">Click the button below to instantly populate your live Supabase database with realistic demo bookings.</p>
+    <button id="seedBtn">Inject Demo Data into Supabase</button>
+    <div id="log">> Ready to seed...</div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://ukwdxrireauvimdnepra.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrd2R4cmlyZWF1dmltZG5lcHJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MjE4MDgsImV4cCI6MjA5MDE5NzgwOH0.0Lac_F6k6Mi8NNwqSw3tKxKii9xYheEq7yjbToFewgU';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const logEl = document.getElementById('log');
+    function log(msg) {
+      logEl.textContent += '\n> ' + msg;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    const DUMMY_DATA = [
+      {"id":"demo_1","name":"Kai Foster","email":"user12@email.com","podcastTitle":"Crypto Daily","date":"2026-04-10","time":"06:00 PM","status":"Published","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_2","name":"River Reed","email":"user17@email.com","podcastTitle":"Personal Finance","date":"2026-04-10","time":"09:00 AM","status":"Published","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_3","name":"Camden Bell","email":"user48@email.com","podcastTitle":"Tech Talk Weekly","date":"2026-04-11","time":"04:00 PM","status":"Editing","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_4","name":"Morgan Chase","email":"user55@email.com","podcastTitle":"History Mysteries","date":"2026-04-11","time":"03:00 PM","status":"Recorded","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_5","name":"Taylor Nguyen","email":"user14@email.com","podcastTitle":"History Mysteries","date":"2026-04-12","time":"04:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_6","name":"Drew Evans","email":"user41@email.com","podcastTitle":"Tech Talk Weekly","date":"2026-04-12","time":"12:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_7","name":"Jordan Lee","email":"user24@email.com","podcastTitle":"Chef Secrets","date":"2026-04-13","time":"08:00 AM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_8","name":"Avery Clark","email":"user25@email.com","podcastTitle":"The Science Hour","date":"2026-04-13","time":"04:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_9","name":"Alex Rivera","email":"user78@email.com","podcastTitle":"Chef Secrets","date":"2026-04-14","time":"01:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_10","name":"Morgan Chase","email":"user80@email.com","podcastTitle":"Fitness Forward","date":"2026-04-14","time":"05:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_11","name":"Finley Moore","email":"user44@email.com","podcastTitle":"History Mysteries","date":"2026-04-15","time":"04:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_12","name":"Sam Torres","email":"user54@email.com","podcastTitle":"History Mysteries","date":"2026-04-15","time":"03:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_13","name":"Quinn Hayes","email":"user67@email.com","podcastTitle":"Design Principles","date":"2026-04-18","time":"09:00 AM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_14","name":"Rory Sanders","email":"user75@email.com","podcastTitle":"Health & Wellness","date":"2026-04-18","time":"05:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_15","name":"Quinn Hayes","email":"user36@email.com","podcastTitle":"Marketing Metrics","date":"2026-04-20","time":"10:00 AM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_16","name":"Morgan Chase","email":"user53@email.com","podcastTitle":"Code & Coffee","date":"2026-04-22","time":"09:00 AM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_17","name":"Avery Clark","email":"user4@email.com","podcastTitle":"Fitness Forward","date":"2026-04-22","time":"04:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_18","name":"Dana Smith","email":"user32@email.com","podcastTitle":"Indie Game Devs","date":"2026-04-28","time":"01:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_19","name":"Casey Kim","email":"user60@email.com","podcastTitle":"Creative Conversations","date":"2026-04-29","time":"09:00 AM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"},
+      {"id":"demo_20","name":"Blake Wilson","email":"user3@email.com","podcastTitle":"Design Principles","date":"2026-04-30","time":"03:00 PM","status":"Booked","createdAt":"2026-03-01T08:00:00Z"}
+    ];
+
+    document.getElementById('seedBtn').addEventListener('click', async (e) => {
+      e.target.disabled = true;
+      e.target.textContent = 'Injecting... Please wait';
+      
+      log('Starting initial data wipe (clearing old rows)...');
+      
+      // Wipe anything there so we don't duplicate on multiple clicks
+      const { data: fetchToDel } = await supabase.from('bookings').select('id');
+      if (fetchToDel && fetchToDel.length > 0) {
+        for (let r of fetchToDel) {
+          await supabase.from('bookings').delete().eq('id', r.id);
+        }
+        log(`Wiped ${fetchToDel.length} old rows.`);
+      }
+
+      log('Inserting 20 fresh dummy records...');
+      
+      // Batch insert is supported by Supabase!
+      const { error } = await supabase.from('bookings').insert(DUMMY_DATA);
+      
+      if (error) {
+        log('❌ Error inserting data: ' + error.message);
+        e.target.disabled = false;
+        e.target.textContent = 'Retry Injection';
+      } else {
+        log('✅ Success! 20 dummy records injected successfully.');
+        log('You can now check your Vercel admin dashboard to see the populated data!');
+        e.target.textContent = 'Injection Complete!';
+      }
+    });
+  </script>
+</body>
+</html>
