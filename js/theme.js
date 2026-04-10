@@ -1,6 +1,6 @@
 /* ─── PodSchedule Theme Toggle ─────────────────────────────────────────── */
 (function () {
-  const STORAGE_KEY = 'podschedule-theme';
+  const STORAGE_KEY = 'kecpodschedule-theme';
 
   function getTheme() {
     return localStorage.getItem(STORAGE_KEY) || 'light';

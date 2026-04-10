@@ -1,6 +1,6 @@
 // ─── Authentication & Route Guard ─────────────────────────────────────────────
 (function() {
-    const AUTH_KEY = 'podschedule_auth';
+    const AUTH_KEY = 'kecpodschedule_auth';
 
     // Current Session State
     const session = JSON.parse(localStorage.getItem(AUTH_KEY)) || null;
