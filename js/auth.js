@@ -16,7 +16,7 @@
     window.PodAuth = {
         login: function(email, password) {
             let role = 'client';
-            if (email.trim().toLowerCase() === 'admin@podschedule.com') {
+            if (email.trim().toLowerCase().includes('admin')) {
                 role = 'admin';
             }
             const newSession = { email, role, loggedInAt: Date.now() };
@@ -43,15 +43,6 @@
     if (!session && !isLoginPage) {
         window.location.replace('login.html');
         return; 
-    }
-
-    if (session && isLoginPage) {
-        if (session.role === 'admin') {
-            window.location.replace('admin.html');
-        } else {
-            window.location.replace('index.html');
-        }
-        return;
     }
 
     if (session && session.role !== 'admin' && isAdminRoute) {
