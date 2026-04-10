@@ -5,18 +5,18 @@
     // Current Session State
     const session = JSON.parse(localStorage.getItem(AUTH_KEY)) || null;
 
-    // Determine current page
-    const currentPath = window.location.pathname;
-    const isLoginPage = currentPath.endsWith('login.html');
-    const isAdminRoute = currentPath.endsWith('admin.html') || 
-                         currentPath.endsWith('calendar.html') || 
-                         currentPath.endsWith('workflow.html');
+    // Determine current page (Handle Vercel's extension-less URLs)
+    const currentPath = window.location.pathname.toLowerCase();
+    const isLoginPage = currentPath.endsWith('login.html') || currentPath.endsWith('/login') || currentPath === '/login';
+    const isAdminRoute = currentPath.includes('admin') || 
+                         currentPath.includes('calendar') || 
+                         currentPath.includes('workflow');
     
     // Public API
     window.PodAuth = {
         login: function(email, password) {
             let role = 'client';
-            if (email.toLowerCase() === 'admin@podschedule.com') {
+            if (email.trim().toLowerCase() === 'admin@podschedule.com') {
                 role = 'admin';
             }
             const newSession = { email, role, loggedInAt: Date.now() };
