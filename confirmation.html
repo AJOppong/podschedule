@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking Confirmed | PodSchedule Studio</title>
+  <meta name="description" content="Your podcast studio session has been successfully booked." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+  <style>
+    .gcal-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: #fff; color: #333;
+      border-radius: var(--radius-md);
+      padding: 12px 24px;
+      font-weight: 600; font-size: 0.95rem;
+      border: none; cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .gcal-btn:hover { background: #f1f5f9; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .gcal-icon { width: 22px; height: 22px; }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Top Navigation (From new layout) -->
+  <nav class="top-nav">
+    <div class="top-nav-logo">
+      <div class="logo-icon"><i data-lucide="mic"></i></div>
+      <div>
+        <div class="logo-text">PodSchedule</div>
+        <div class="logo-sub">Studio</div>
+      </div>
+    </div>
+    <div class="top-nav-links" style="align-items: center;">
+      <button id="themeToggleBtn" class="btn btn-ghost btn-sm" style="font-size:1.1rem;padding:4px 8px;" title="Toggle Theme"><i data-lucide="moon"></i></button>
+      <a href="admin.html" class="btn btn-ghost btn-sm"><i data-lucide="settings" style="width:16px;height:16px"></i> Admin Dashboard</a>
+    </div>
+  
+      <a href="#" class="nav-item logout-btn" style="color:var(--danger); margin-top: auto;">
+        <span class="nav-icon"><i data-lucide="log-out"></i></span> Logout
+      </a>
+    </nav>
+
+  <div class="confirm-wrapper" style="background:var(--bg-base); min-height:calc(100vh - 64px); padding-top:60px; display:flex; align-items:flex-start;">
+    <div class="confirm-card card fade-in" style="box-shadow:var(--shadow-md); border-color:var(--border);">
+      <div style="text-align:center; margin-bottom:28px;">
+        <div class="confirm-icon"><i data-lucide="check-circle"></i></div>
+        <h2 style="margin-bottom:8px;">You're All Set!</h2>
+        <p class="text-muted text-sm">Your podcast studio session has been confirmed. A confirmation email has been sent to your inbox.</p>
+      </div>
+
+      <!-- Booking Details -->
+      <div style="background:var(--bg-elevated);border-radius:var(--radius-md);padding:8px 20px;margin-bottom:24px;">
+        <div class="confirm-detail">
+          <span class="confirm-detail-label">👤 Name</span>
+          <span class="confirm-detail-value" id="cd-name">—</span>
+        </div>
+        <div class="confirm-detail">
+          <span class="confirm-detail-label">📧 Email</span>
+          <span class="confirm-detail-value" id="cd-email">—</span>
+        </div>
+        <div class="confirm-detail">
+          <span class="confirm-detail-label"><i data-lucide="mic"></i> Podcast Title</span>
+          <span class="confirm-detail-value" id="cd-title">—</span>
+        </div>
+        <div class="confirm-detail">
+          <span class="confirm-detail-label"><i data-lucide="calendar"></i> Date</span>
+          <span class="confirm-detail-value" id="cd-date">—</span>
+        </div>
+        <div class="confirm-detail">
+          <span class="confirm-detail-label">🕐 Time</span>
+          <span class="confirm-detail-value" id="cd-time">—</span>
+        </div>
+        <div class="confirm-detail">
+          <span class="confirm-detail-label"><i data-lucide="kanban"></i> Status</span>
+          <span class="confirm-detail-value"><span class="badge badge-booked">Booked</span></span>
+        </div>
+      </div>
+
+      <!-- Add to Calendar -->
+      <div style="margin-bottom:24px;text-align:center;">
+        <p class="text-muted text-sm mb-12">Add this session to your calendar so you don't miss it:</p>
+        <a id="gcalLink" href="#" target="_blank" rel="noopener noreferrer" class="gcal-btn">
+          <svg class="gcal-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="36" height="36" rx="4" fill="#fff" stroke="#ddd" stroke-width="2"/>
+            <rect x="6" y="14" width="36" height="10" fill="#4285F4"/>
+            <text x="24" y="38" text-anchor="middle" font-size="14" font-weight="bold" fill="#333" font-family="Arial">GC</text>
+          </svg>
+          Add to Google Calendar
+        </a>
+      </div>
+
+      <!-- Email note -->
+      <div style="background:var(--accent-dim);border:1px solid rgba(124,92,252,0.2);border-radius:var(--radius-md);padding:14px 16px;margin-bottom:24px;display:flex;gap:10px;align-items:flex-start;">
+        <span>📬</span>
+        <p class="text-sm text-muted">A confirmation email with all booking details and your calendar link has been sent to <strong id="email-highlight" style="color:var(--text-primary)">your inbox</strong>.</p>
+      </div>
+
+      <!-- Actions -->
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="index.html" class="btn btn-ghost w-full" style="justify-content:center;">← Book Another Session</a>
+        <a href="admin.html" class="btn btn-primary w-full" style="justify-content:center;">View Admin Dashboard</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/confirmation.js"></script>
+</body>
+</html>

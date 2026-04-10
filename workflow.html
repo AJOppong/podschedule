@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Workflow | PodSchedule Studio</title>
+  <meta name="description" content="Manage your podcast studio bookings through the production workflow." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+  <style>
+    .workflow-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      overflow-x: auto;
+      padding-bottom: 24px;
+      min-height: 60vh;
+    }
+    
+    .workflow-col {
+      background: var(--bg-hover);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 280px;
+    }
+
+    .workflow-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .header-booked { background: var(--status-booked); }
+    .header-recorded { background: var(--status-recorded); }
+    .header-editing { background: var(--status-editing); }
+    .header-published { background: var(--status-published); }
+
+    .header-count {
+      background: rgba(255, 255, 255, 0.2);
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .workflow-cards {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 50px;
+    }
+
+    .wf-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      cursor: grab;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .wf-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .wf-card:active { cursor: grabbing; }
+    .wf-card.dragging { opacity: 0.5; transform: scale(0.98); }
+
+    .wf-title { font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
+    .wf-meta {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+    }
+    .wf-avatar {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-weight: bold;
+    }
+    .wf-menu {
+      color: var(--text-muted);
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    .wf-menu:hover { color: var(--text-primary); }
+
+    .stat-cards-top {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .stat-card-wf {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .stat-card-wf .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      position: absolute; top: 20px; left: 20px;
+    }
+    .stat-card-wf .val { font-size: 1.8rem; font-weight: 700; margin-top: 12px; line-height: 1; }
+    .stat-card-wf .lbl { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div class="page-wrapper">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">
+        <div class="logo-icon" style="background:var(--accent);color:#fff;box-shadow:none;border-radius:var(--radius-md);"><i data-lucide="mic"></i></div>
+        <div>
+          <div class="logo-text">PodSchedule</div>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin.html" class="nav-item admin-only">
+        <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span> Dashboard
+      </a>
+      <a href="index.html" class="nav-item">
+        <span class="nav-icon"><i data-lucide="mic"></i></span> Booking
+      </a>
+      <a href="calendar.html" class="nav-item admin-only">
+        <span class="nav-icon"><i data-lucide="calendar"></i></span> Calendar
+      </a>
+      <a href="workflow.html" class="nav-item active admin-only">
+        <span class="nav-icon"><i data-lucide="kanban"></i></span> Workflow
+      </a>
+    
+      <a href="#" class="nav-item logout-btn" style="color:var(--danger); margin-top: auto;">
+        <span class="nav-icon"><i data-lucide="log-out"></i></span> Logout
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="nav-item text-muted">
+        <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:bold;margin-right:8px;">AS</div>
+        Admin User
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="mob-menu-btn" id="menuBtn"><i data-lucide="menu"></i></button>
+        <div class="search-bar" style="margin-left: 12px;">
+          <span style="color:var(--text-muted);"><i data-lucide="search" style="width:16px;height:16px"></i></span>
+          <input type="text" placeholder="Search bookings, podcasts..." />
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="themeToggleBtn" class="btn btn-ghost btn-sm" style="font-size:1.1rem;padding:4px 8px;" title="Toggle Theme"><i data-lucide="moon"></i></button>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div style="margin-bottom:32px;">
+        <h2 style="font-size:1.8rem;margin-bottom:8px;">Podcast Workflow</h2>
+        <p class="text-muted">Track your podcast production from booking to publishing</p>
+      </div>
+
+      <!-- Top Stats -->
+      <div class="stat-cards-top">
+        <div class="stat-card-wf">
+          <div class="dot" style="background:var(--status-booked)"></div>
+          <div class="val" id="wf-cnt-booked">0</div>
+          <div class="lbl">Booked</div>
+        </div>
+        <div class="stat-card-wf">
+          <div class="dot" style="background:var(--status-recorded)"></div>
+          <div class="val" id="wf-cnt-recorded">0</div>
+          <div class="lbl">Recorded</div>
+        </div>
+        <div class="stat-card-wf">
+          <div class="dot" style="background:var(--status-editing)"></div>
+          <div class="val" id="wf-cnt-editing">0</div>
+          <div class="lbl">Editing</div>
+        </div>
+        <div class="stat-card-wf">
+          <div class="dot" style="background:var(--status-published)"></div>
+          <div class="val" id="wf-cnt-published">0</div>
+          <div class="lbl">Published</div>
+        </div>
+      </div>
+
+      <!-- Kanban Board -->
+      <div class="workflow-board">
+        <!-- Booked -->
+        <div class="workflow-col">
+          <div class="workflow-header header-booked">
+            <span>Booked</span>
+            <span class="header-count" id="hd-cnt-booked">0</span>
+          </div>
+          <div class="workflow-cards" id="col-booked" data-status="Booked"></div>
+        </div>
+
+        <!-- Recorded -->
+        <div class="workflow-col">
+          <div class="workflow-header header-recorded">
+            <span>Recorded</span>
+            <span class="header-count" id="hd-cnt-recorded">0</span>
+          </div>
+          <div class="workflow-cards" id="col-recorded" data-status="Recorded"></div>
+        </div>
+
+        <!-- Editing -->
+        <div class="workflow-col">
+          <div class="workflow-header header-editing">
+            <span>Editing</span>
+            <span class="header-count" id="hd-cnt-editing">0</span>
+          </div>
+          <div class="workflow-cards" id="col-editing" data-status="Editing"></div>
+        </div>
+
+        <!-- Published -->
+        <div class="workflow-col">
+          <div class="workflow-header header-published">
+            <span>Published</span>
+            <span class="header-count" id="hd-cnt-published">0</span>
+          </div>
+          <div class="workflow-cards" id="col-published" data-status="Published"></div>
+        </div>
+      </div>
+
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;margin-top:24px;display:flex;align-items:flex-start;gap:12px;">
+        <span><i data-lucide="lightbulb" style="width:18px;height:18px"></i></span>
+        <div>
+          <strong style="font-size:0.9rem;">Tip</strong>
+          <p class="text-sm text-muted" style="margin-top:4px;">Drag and drop cards between columns to update their status. This helps you track the production workflow from booking to publishing.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/workflow.js"></script>
+</body>
+</html>

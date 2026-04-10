@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calendar View | PodSchedule Studio</title>
+  <meta name="description" content="View the PodSchedule studio calendar with available and booked sessions." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+  <style>
+    .cal-legend {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .cal-legend-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.8rem; color: var(--text-secondary);
+    }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .legend-available  { background: var(--success); }
+    .legend-partial    { background: var(--status-editing); }
+    .legend-full       { background: var(--danger); }
+    .legend-today      { border: 2px solid var(--accent); background: transparent; }
+    .cal-day-num-wrap  { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div class="page-wrapper">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">
+        <div class="logo-icon" style="background:var(--accent);color:#fff;box-shadow:none;border-radius:var(--radius-md);"><i data-lucide="mic"></i></div>
+        <div>
+          <div class="logo-text">PodSchedule</div>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin.html" class="nav-item admin-only">
+        <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span> Dashboard
+      </a>
+      <a href="index.html" class="nav-item">
+        <span class="nav-icon"><i data-lucide="mic"></i></span> Booking
+      </a>
+      <a href="calendar.html" class="nav-item active admin-only">
+        <span class="nav-icon"><i data-lucide="calendar"></i></span> Calendar
+      </a>
+      <a href="workflow.html" class="nav-item admin-only">
+        <span class="nav-icon"><i data-lucide="kanban"></i></span> Workflow
+      </a>
+    
+      <a href="#" class="nav-item logout-btn" style="color:var(--danger); margin-top: auto;">
+        <span class="nav-icon"><i data-lucide="log-out"></i></span> Logout
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="nav-item text-muted">
+        <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:bold;margin-right:8px;">AS</div>
+        Admin User
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main-content">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="mob-menu-btn" id="menuBtn"><i data-lucide="menu"></i></button>
+        <div class="topbar-title">
+          <h2>Calendar View</h2>
+          <p>Monthly overview of studio schedule</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="themeToggleBtn" class="btn btn-ghost btn-sm" style="font-size:1.1rem;padding:4px 8px;" title="Toggle Theme"><i data-lucide="moon"></i></button>
+        <a href="index.html" class="btn btn-primary btn-sm">+ New Booking</a>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <!-- Legend -->
+      <div class="cal-legend">
+        <div class="cal-legend-item"><div class="legend-dot legend-available"></div> Available</div>
+        <div class="cal-legend-item"><div class="legend-dot legend-partial"></div> Partially Booked</div>
+        <div class="cal-legend-item"><div class="legend-dot legend-full"></div> Fully Booked</div>
+        <div class="cal-legend-item"><div class="legend-dot legend-today"></div> Today</div>
+      </div>
+
+      <div class="calendar-grid">
+        <!-- Calendar -->
+        <div class="calendar-main card">
+          <div class="cal-header">
+            <button class="btn btn-ghost btn-sm" id="prevMonth">‹ Prev</button>
+            <h3 id="calMonthLabel">Loading…</h3>
+            <button class="btn btn-ghost btn-sm" id="nextMonth">Next ›</button>
+          </div>
+          <div class="cal-days" id="calDays"></div>
+        </div>
+
+        <!-- Side Panel -->
+        <div class="cal-panel" id="calPanel">
+          <h3 id="panelTitle">Select a day</h3>
+          <p id="panelEmpty" class="text-muted text-sm" style="margin-top:12px;">Click on a day to view its bookings.</p>
+          <div id="panelBookings"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/calendar.js"></script>
+</body>
+</html>

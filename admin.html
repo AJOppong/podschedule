@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | PodSchedule Studio</title>
+  <meta name="description" content="PodSchedule admin dashboard — manage all podcast studio bookings and track workflow stages." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+  <style>
+    .actions-cell { display:flex; gap:6px; align-items:center; }
+    .search-bar {
+      display: flex; gap: 12px; align-items: center;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 8px 14px; gap: 8px;
+      flex: 1; max-width: 320px;
+    }
+    .search-bar input {
+      background:none; border:none; color:var(--text-primary);
+      font-size:0.9rem; width:100%;
+    }
+    .search-bar input::placeholder { color:var(--text-muted); }
+    .filter-select {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      padding: 8px 32px 8px 12px;
+      font-size: 0.85rem; cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%238888aa' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+    }
+    .no-padding-top { padding-top: 0; }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div class="page-wrapper">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">
+        <div class="logo-icon" style="background:var(--accent);color:#fff;box-shadow:none;border-radius:var(--radius-md);"><i data-lucide="mic"></i></div>
+        <div>
+          <div class="logo-text">PodSchedule</div>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin.html" class="nav-item active admin-only" id="nav-dashboard">
+        <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span> Dashboard
+      </a>
+      <a href="index.html" class="nav-item">
+        <span class="nav-icon"><i data-lucide="mic"></i></span> Booking
+      </a>
+      <a href="calendar.html" class="nav-item admin-only" id="nav-calendar">
+        <span class="nav-icon"><i data-lucide="calendar"></i></span> Calendar
+      </a>
+      <a href="workflow.html" class="nav-item admin-only">
+        <span class="nav-icon"><i data-lucide="kanban"></i></span> Workflow
+      </a>
+    
+      <a href="#" class="nav-item logout-btn" style="color:var(--danger); margin-top: auto;">
+        <span class="nav-icon"><i data-lucide="log-out"></i></span> Logout
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="nav-item text-muted">
+        <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:bold;margin-right:8px;">AS</div>
+        Admin User
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="mob-menu-btn" id="menuBtn"><i data-lucide="menu"></i></button>
+        <div class="search-bar" style="margin-left: 12px; max-width: 400px; display: flex; gap: 12px; align-items: center; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 8px 14px; width: 300px;">
+          <span style="color:var(--text-muted);"><i data-lucide="search" style="width:16px;height:16px"></i></span>
+          <input type="text" id="searchInput" placeholder="Search bookings, podcasts..." style="background:none; border:none; color:var(--text-primary); font-size:0.9rem; width:100%; outline:none;" />
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="themeToggleBtn" class="btn btn-ghost btn-sm" style="font-size:1.1rem;padding:4px 8px;" title="Toggle Theme"><i data-lucide="moon"></i></button>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div style="margin-bottom:32px;">
+        <h2 style="font-size:1.8rem;margin-bottom:8px;">Dashboard</h2>
+        <p class="text-muted" id="topbarDate">Welcome back! Here's what's happening with your studio.</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="stat-grid" id="statGrid">
+        <div class="card" style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <div class="text-muted text-sm">Total Bookings</div>
+            <div class="stat-value" id="stat-total" style="font-size:2rem; margin-top:8px;">0</div>
+            <div class="text-xs" style="color:var(--success); margin-top:8px;">↑ 12% from last month</div>
+          </div>
+          <div style="background:var(--status-booked); color:#fff; width:40px; height:40px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:1.2rem;"><i data-lucide="calendar"></i></div>
+        </div>
+        
+        <div class="card" style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <div class="text-muted text-sm">Upcoming Sessions</div>
+            <div class="stat-value" id="stat-upcoming" style="font-size:2rem; margin-top:8px;">0</div>
+            <div class="text-xs" style="color:var(--success); margin-top:8px;">↓ 3 this week</div>
+          </div>
+          <div style="background:var(--status-recorded); color:#fff; width:40px; height:40px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:1.2rem;"><i data-lucide="file-text"></i></div>
+        </div>
+
+        <div class="card" style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <div class="text-muted text-sm">Podcasts in Editing</div>
+            <div class="stat-value" id="stat-editing" style="font-size:2rem; margin-top:8px;">0</div>
+            <div class="text-xs" style="color:var(--danger); margin-top:8px;">↓ 5 pending review</div>
+          </div>
+          <div style="background:var(--status-editing); color:#fff; width:40px; height:40px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:1.2rem;"><i data-lucide="scissors"></i></div>
+        </div>
+
+        <div class="card" style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <div class="text-muted text-sm">Published Episodes</div>
+            <div class="stat-value" id="stat-published" style="font-size:2rem; margin-top:8px;">0</div>
+            <div class="text-xs" style="color:var(--success); margin-top:8px;">↑ 8% from last month</div>
+          </div>
+          <div style="background:var(--status-published); color:#fff; width:40px; height:40px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:1.2rem;"><i data-lucide="check-square"></i></div>
+        </div>
+      </div>
+
+      <!-- Bookings Table -->
+      <div class="card" style="padding:0;overflow:hidden;border:1px solid var(--border); box-shadow:var(--shadow-sm);">
+        <div style="padding:24px;border-bottom:1px solid var(--border);">
+          <h3 style="font-size:1.2rem; margin-bottom:4px;">Recent Bookings</h3>
+          <p class="text-muted text-sm">Manage your upcoming and recent podcast sessions</p>
+        </div>
+        <div class="table-wrapper" style="border:none;border-radius:0;">
+          <table>
+            <thead style="background:transparent;">
+              <tr>
+                <th style="padding-left:24px;">Name</th>
+                <th>Podcast Title</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th style="text-align:right; padding-right:24px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsBody"></tbody>
+          </table>
+        </div>
+        <div id="tableEmpty" class="empty-state" style="display:none;">
+          <div class="empty-state-icon">📭</div>
+          <p>No bookings found. Try adjusting your filters.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal">
+    <h3 style="margin-bottom:12px;"><i data-lucide="trash-2"></i> Delete Booking?</h3>
+    <p class="text-muted text-sm" style="margin-bottom:24px;">This will permanently remove the booking and free up the time slot. This cannot be undone.</p>
+    <div style="display:flex;gap:12px;justify-content:flex-end;">
+      <button class="btn btn-ghost" id="cancelDelete">Cancel</button>
+      <button class="btn btn-danger" id="confirmDelete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
