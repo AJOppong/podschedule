@@ -1,6 +1,8 @@
 // ─── PodSchedule Data Layer ───────────────────────────────────────────────────
 // Data is persisted in Supabase under the "bookings" table
 
+(function() {
+
 const SUPABASE_URL = 'https://ukwdxrireauvimdnepra.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrd2R4cmlyZWF1dmltZG5lcHJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MjE4MDgsImV4cCI6MjA5MDE5NzgwOH0.0Lac_F6k6Mi8NNwqSw3tKxKii9xYheEq7yjbToFewgU';
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -137,3 +139,5 @@ window.PodData = {
   getBookingsForDate, getStats, getSlotsForDate,
   buildGoogleCalendarUrl, initData
 };
+
+})();
