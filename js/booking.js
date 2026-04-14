@@ -82,14 +82,21 @@
   // ── Form Submit ────────────────────────────────────────────────────────────
   bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const date  = dateInput.value;
-    const name  = document.getElementById('guestName').value.trim();
-    const email = document.getElementById('guestEmail').value.trim();
-    const title = document.getElementById('podTitle').value.trim();
+    const date         = dateInput.value;
+    const name         = document.getElementById('guestName').value.trim();
+    const email        = document.getElementById('guestEmail').value.trim();
+    const whatsapp     = document.getElementById('guestWhatsapp').value.trim();
+    const department   = document.getElementById('guestDepartment').value.trim();
+    const title        = document.getElementById('podTitle').value.trim();
+    const description  = document.getElementById('podDescription').value.trim();
+    const podType      = document.getElementById('podType').value;
+    const participants = document.getElementById('podParticipants').value;
 
     if (!date)  { showToast('Please select a date.', 'error'); return; }
     if (!selectedTime) { showToast('Please select a time slot.', 'error'); return; }
-    if (!name || !email || !title) { showToast('Please fill in all fields.', 'error'); return; }
+    if (!name || !email || !whatsapp || !department || !title || !description || !podType || !participants) {
+      showToast('Please fill in all required fields.', 'error'); return;
+    }
 
     // Double-check availability at submit time
     const isAvail = await PodData.isSlotAvailable(date, selectedTime);
@@ -103,9 +110,14 @@
     submitBtn.textContent = '⏳ Booking...';
 
     // Save booking
-    const booking = await PodData.addBooking({ name, email, podcastTitle: title, date, time: selectedTime });
+    const booking = await PodData.addBooking({
+      name, email, whatsapp, department,
+      podcastTitle: title, description,
+      podType, participants: Number(participants),
+      date, time: selectedTime
+    });
 
-    // Simulate email confirmation delay
+    // Redirect to confirmation
     setTimeout(() => {
       const params = new URLSearchParams({
         id:    booking.id,

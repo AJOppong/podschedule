@@ -28,9 +28,13 @@ async function getBookings() {
   return data || [];
 }
 
-async function addBooking({ name, email, podcastTitle, date, time }) {
+async function addBooking({ name, email, whatsapp, department, podcastTitle, description, podType, participants, date, time }) {
   const id = 'b' + Date.now();
-  const booking = { id, name, email, podcastTitle, date, time, status: 'Booked', createdAt: new Date().toISOString() };
+  const booking = {
+    id, name, email, whatsapp, department,
+    podcastTitle, description, podType, participants,
+    date, time, status: 'Booked', createdAt: new Date().toISOString()
+  };
   
   const { data, error } = await supabase.from('bookings').insert([booking]).select();
   if (error) {

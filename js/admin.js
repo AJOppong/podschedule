@@ -68,12 +68,17 @@
     bookings.forEach(b => {
       const tr = document.createElement('tr');
       tr.dataset.id = b.id;
+      tr.style.cursor = 'pointer';
       tr.innerHTML = `
         <td>
           <div class="table-name">${escHtml(b.name)}</div>
           <div class="table-sub">${escHtml(b.email)}</div>
+          ${b.whatsapp ? `<div class="table-sub" style="color:var(--accent-light);"><i data-lucide="message-circle" style="width:12px;height:12px;vertical-align:middle;"></i> ${escHtml(b.whatsapp)}</div>` : ''}
         </td>
-        <td>${escHtml(b.podcastTitle)}</td>
+        <td>
+          <div>${escHtml(b.podcastTitle)}</div>
+          ${b.department ? `<div class="table-sub">${escHtml(b.department)}</div>` : ''}
+        </td>
         <td>${formatDate(b.date)}</td>
         <td>${escHtml(b.time)}</td>
         <td>
@@ -83,11 +88,50 @@
         </td>
         <td>
           <div class="actions-cell">
+            <button class="btn btn-ghost btn-sm expand-btn" data-id="${b.id}"><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
             <button class="btn btn-danger btn-sm delete-btn" data-id="${b.id}"><i data-lucide="trash-2"></i> Delete</button>
           </div>
         </td>
       `;
       tbody.appendChild(tr);
+
+      // Detail expand row
+      const detailRow = document.createElement('tr');
+      detailRow.className = 'detail-row';
+      detailRow.style.display = 'none';
+      detailRow.innerHTML = `
+        <td colspan="6" style="padding:0;">
+          <div style="background:var(--bg-elevated); padding:16px 24px; border-top:1px solid var(--border); display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:12px; font-size:0.88rem;">
+            <div><span class="text-muted">Type:</span>&nbsp;<strong>${escHtml(b.podType || '—')}</strong></div>
+            <div><span class="text-muted">Participants:</span>&nbsp;<strong>${escHtml(String(b.participants || '—'))}</strong></div>
+            <div><span class="text-muted">WhatsApp:</span>&nbsp;<strong>${escHtml(b.whatsapp || '—')}</strong></div>
+            <div><span class="text-muted">Department / Office:</span>&nbsp;<strong>${escHtml(b.department || '—')}</strong></div>
+            <div style="grid-column:1/-1;"><span class="text-muted">Description:</span>&nbsp;${escHtml(b.description || '—')}</div>
+          </div>
+        </td>
+      `;
+      tbody.appendChild(detailRow);
+    });
+
+    // Expand row toggle
+    tbody.querySelectorAll('.expand-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const id = this.dataset.id;
+        const rows = tbody.querySelectorAll('.detail-row');
+        const parentTr = this.closest('tr');
+        const detailTr = parentTr.nextElementSibling;
+        const isOpen = detailTr.style.display !== 'none';
+        // Close all others
+        rows.forEach(r => r.style.display = 'none');
+        tbody.querySelectorAll('.expand-btn i').forEach(i => i.setAttribute('data-lucide','chevron-down'));
+        lucide.createIcons();
+        if (!isOpen) {
+          detailTr.style.display = '';
+          this.querySelector('i').setAttribute('data-lucide','chevron-up');
+          lucide.createIcons();
+        }
+      });
     });
 
     // Status change handlers
@@ -111,6 +155,8 @@
         document.getElementById('deleteModal').classList.add('open');
       });
     });
+
+    lucide.createIcons();
   }
 
   function escHtml(str) {

@@ -122,9 +122,37 @@
                 <input type="email" class="form-control" id="guestEmail" placeholder="e.g. alex@email.com" required />
               </div>
             </div>
-            <div class="form-group mb-32">
+            <div class="form-row mb-20">
+              <div class="form-group">
+                <label class="form-label" for="guestWhatsapp">WhatsApp Number *</label>
+                <input type="tel" class="form-control" id="guestWhatsapp" placeholder="e.g. +233 24 000 0000" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="guestDepartment">Department / Office Name *</label>
+                <input type="text" class="form-control" id="guestDepartment" placeholder="e.g. Dept. of Computer Engineering" required />
+              </div>
+            </div>
+            <div class="form-group mb-20">
               <label class="form-label" for="podTitle">Podcast Title *</label>
               <input type="text" class="form-control" id="podTitle" placeholder="e.g. Tech Talk Weekly" required />
+            </div>
+            <div class="form-group mb-20">
+              <label class="form-label" for="podDescription">Podcast Description *</label>
+              <textarea class="form-control" id="podDescription" rows="3" placeholder="Briefly describe what this podcast episode is about..." required style="resize:vertical;"></textarea>
+            </div>
+            <div class="form-row mb-32">
+              <div class="form-group">
+                <label class="form-label" for="podType">Podcast Type *</label>
+                <select class="form-control" id="podType" required style="cursor:pointer;">
+                  <option value="">-- Select type --</option>
+                  <option value="One-on-One">One-on-One</option>
+                  <option value="Group">Group</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="podParticipants">Number of Participants *</label>
+                <input type="number" class="form-control" id="podParticipants" min="1" max="20" placeholder="e.g. 3" required />
+              </div>
             </div>
 
             <!-- Step 1 & 2: Date & Time -->
