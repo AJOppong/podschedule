@@ -94,7 +94,7 @@
 
     if (!date)  { showToast('Please select a date.', 'error'); return; }
     if (!selectedTime) { showToast('Please select a time slot.', 'error'); return; }
-    if (!name || !email || !whatsapp || !department || !title || !description || !podType || !participants) {
+    if (!name || !email || !whatsapp || !department || !title || !podType || !participants) {
       showToast('Please fill in all required fields.', 'error'); return;
     }
 
