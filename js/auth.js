@@ -54,6 +54,16 @@
     document.addEventListener('DOMContentLoaded', () => {
         const currentUser = window.PodAuth.getSession();
         
+        // Auto-fill user details
+        if (currentUser) {
+            document.querySelectorAll('.user-name').forEach(el => {
+                el.textContent = currentUser.email;
+            });
+            document.querySelectorAll('.user-avatar').forEach(el => {
+                el.textContent = currentUser.email.substring(0, 2).toUpperCase();
+            });
+        }
+        
         // Hide Admin Links for Clients
         if (currentUser && currentUser.role !== 'admin') {
             document.querySelectorAll('.admin-only').forEach(el => {

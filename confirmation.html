@@ -37,13 +37,10 @@
     </div>
     <div class="top-nav-links" style="align-items: center;">
       <button id="themeToggleBtn" class="btn btn-ghost btn-sm" style="font-size:1.1rem;padding:4px 8px;" title="Toggle Theme"><i data-lucide="moon"></i></button>
-      <a href="admin.html" class="btn btn-ghost btn-sm"><i data-lucide="settings" style="width:16px;height:16px"></i> Admin Dashboard</a>
+      <a href="admin.html" class="btn btn-ghost btn-sm admin-only"><i data-lucide="settings" style="width:16px;height:16px"></i> Admin Dashboard</a>
+      <a href="#" class="btn btn-ghost btn-sm logout-btn" style="color:var(--danger); margin-left: 8px;"><i data-lucide="log-out" style="width:16px;height:16px"></i> Logout</a>
     </div>
-  
-      <a href="#" class="nav-item logout-btn" style="color:var(--danger); margin-top: auto;">
-        <span class="nav-icon"><i data-lucide="log-out"></i></span> Logout
-      </a>
-    </nav>
+  </nav>
 
   <div class="confirm-wrapper" style="background:var(--bg-base); min-height:calc(100vh - 64px); padding-top:60px; display:flex; align-items:flex-start;">
     <div class="confirm-card card fade-in" style="box-shadow:var(--shadow-md); border-color:var(--border);">
@@ -103,7 +100,7 @@
       <!-- Actions -->
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
         <a href="index.html" class="btn btn-ghost w-full" style="justify-content:center;">← Book Another Session</a>
-        <a href="admin.html" class="btn btn-primary w-full" style="justify-content:center;">View Admin Dashboard</a>
+        <a href="admin.html" class="btn btn-primary w-full admin-only" style="justify-content:center;">View Admin Dashboard</a>
       </div>
     </div>
   </div>

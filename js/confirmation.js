@@ -1,5 +1,5 @@
 // ─── Confirmation Page Logic ──────────────────────────────────────────────────
-(function () {
+(async function () {
   const params = new URLSearchParams(window.location.search);
   const id    = params.get('id');
   const name  = params.get('name')  || 'Guest';
@@ -25,7 +25,7 @@
 
   // Build Google Calendar link
   if (id) {
-    const booking = window.PodData.getBookingById(id);
+    const booking = await window.PodData.getBookingById(id);
     if (booking) {
       const gcalUrl = window.PodData.buildGoogleCalendarUrl(booking);
       document.getElementById('gcalLink').href = gcalUrl;
