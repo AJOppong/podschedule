@@ -245,104 +245,112 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 60px; text-align: left; max-width: 1200px; flex-wrap: wrap;">
-      <div style="flex: 1; min-width: 300px;">
-        <div class="hero-badge" style="background: var(--glass-light); backdrop-filter: blur(10px);">E-Learning Centre</div>
-        <h1 style="font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 24px;">Elevate Your <span style="background: linear-gradient(135deg, var(--accent), #ff4d4d); -webkit-background-clip: text; color: transparent;">Voice</span></h1>
-        <p style="margin: 0 0 40px 0;">Professional, state-of-the-art podcast recording facilities for students, faculty, and content creators. Step in with an idea, walk out with a fully recorded episode.</p>
-        <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-          <a href="login.html" class="btn btn-primary btn-lg" style="padding: 16px 36px; font-size: 1.1rem; border-radius: 100px; box-shadow: 0 8px 25px rgba(163,0,0,0.3);">
-            Book Now <i data-lucide="arrow-right" style="margin-left: 8px;"></i>
-          </a>
-          <a href="#how-it-works" class="btn btn-ghost btn-lg" style="padding: 16px 36px; font-size: 1.1rem; border-radius: 100px; background: var(--glass-light); backdrop-filter: blur(10px);">
-            Learn More
-          </a>
-        </div>
+  <section class="hero-section" style="padding-top: 80px; padding-bottom: 0;">
+    <div class="container" style="text-align: center; max-width: 900px;">
+      <h1 style="font-size: clamp(3.5rem, 8vw, 6.5rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; color: var(--text-primary); font-weight: 800;">Elevate Your <br><span style="color: var(--accent-light);">Voice</span></h1>
+      <p style="font-size: 1.15rem; color: var(--text-secondary); margin: 0 auto 40px; max-width: 500px;">Step into the modern KNUST recording studio. A state-of-the-art environment built for faculty, students, and creators.</p>
+      
+      <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 60px;">
+        <a href="login.html" class="btn btn-primary btn-lg" style="padding: 16px 40px; font-size: 1.1rem; border-radius: 8px;">Book Session</a>
+        <a href="#about" class="btn btn-ghost btn-lg" style="padding: 16px 40px; font-size: 1.1rem; border-radius: 8px; border: 1px solid var(--border);">Learn More</a>
       </div>
-      <div style="flex: 1; position: relative; min-width: 300px;">
-        <div style="position: absolute; top: -20px; left: -20px; right: 20px; bottom: 20px; background: linear-gradient(135deg, var(--accent-light), var(--accent)); border-radius: 24px; opacity: 0.15; filter: blur(20px);"></div>
-        <img src="imgs/hero_studio_1776190400193.png" alt="KNUST Podcast Studio" style="width: 100%; border-radius: 24px; box-shadow: var(--shadow-lg); position: relative; z-index: 2; object-fit: cover; aspect-ratio: 4/3; border: 4px solid var(--bg-surface);" />
+      
+      <div style="position: relative; width: 100%; border-radius: 24px 24px 0 0; overflow: hidden; height: clamp(300px, 50vh, 600px); display: flex; align-items: flex-end;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-base) 0%, transparent 80%); z-index: 2;"></div>
+        <img src="imgs/hero_studio_1776190400193.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1;" alt="Studio Hero Graphic" />
       </div>
     </div>
   </section>
 
-  <!-- About  -->
-  <section id="about" class="section-padding" style="background: var(--bg-base);">
-    <div class="container" style="display: flex; gap: 48px; align-items: center; flex-wrap: wrap;">
-      <div style="flex: 1; min-width: 300px;">
-        <div style="background: var(--bg-hover); border-radius: var(--radius-xl); padding: 40px; display: flex; align-items: center; justify-content: center; height: 100%;">
-          <div style="text-align: center; color: var(--accent);">
-            <i data-lucide="headphones" style="width: 120px; height: 120px; opacity: 0.8;"></i>
+  <!-- Services (Hykrox Grid Style) -->
+  <section id="services" class="section-padding" style="padding-top: 80px; background: var(--bg-surface);">
+    <div class="container" style="display: flex; flex-wrap: wrap; gap: 60px; justify-content: space-between; align-items: flex-start;">
+      <div style="flex: 1; min-width: 300px; max-width: 400px; padding-top: 20px;">
+        <h3 style="color: var(--accent-light); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; font-weight: 600;">Our Services</h3>
+        <h2 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 24px; color: var(--text-primary); font-weight: 800; letter-spacing: -0.02em;">WHAT WE <br><span style="color: var(--text-secondary);">DO?</span></h2>
+        <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 1.05rem;">We provide acoustic isolation, multi-track mapping, and professional post-editing tailored for educational and commercial excellence.</p>
+        <a href="login.html" class="btn btn-primary" style="border-radius: 4px; padding: 12px 32px;">VIEW ALL</a>
+      </div>
+      <div style="flex: 1.5; min-width: 300px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
+          <!-- Card 1 -->
+          <div style="background: var(--bg-base); border: 1px solid var(--border); padding: 32px; border-radius: 12px; transition: transform 0.4s ease; box-shadow: var(--shadow-sm);" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent-light)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border)';">
+             <div style="color: var(--accent-light); margin-bottom: 20px;"><i data-lucide="mic" style="width: 48px; height: 48px; stroke-width: 1.5;"></i></div>
+             <h4 style="font-size: 1.25rem; margin-bottom: 12px; font-weight: 600;">1-on-1 Record</h4>
+             <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.5;">Pristine clarity for solo narrators or single interviews.</p>
+          </div>
+          <!-- Card 2 -->
+          <div style="background: var(--bg-base); border: 1px solid var(--border); padding: 32px; border-radius: 12px; transition: transform 0.4s ease; transform: translateY(40px); box-shadow: var(--shadow-sm);" onmouseover="this.style.transform='translateY(35px)'; this.style.borderColor='var(--accent-light)';" onmouseout="this.style.transform='translateY(40px)'; this.style.borderColor='var(--border)';">
+             <div style="color: var(--accent-light); margin-bottom: 20px;"><i data-lucide="users" style="width: 48px; height: 48px; stroke-width: 1.5;"></i></div>
+             <h4 style="font-size: 1.25rem; margin-bottom: 12px; font-weight: 600;">Group Session</h4>
+             <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.5;">Multi-track isolation for up to 4 distinct voices.</p>
+          </div>
+          <!-- Card 3 -->
+          <div style="background: var(--bg-base); border: 1px solid var(--border); padding: 32px; border-radius: 12px; transition: transform 0.4s ease; box-shadow: var(--shadow-sm);" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent-light)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border)';">
+             <div style="color: var(--accent-light); margin-bottom: 20px;"><i data-lucide="video" style="width: 48px; height: 48px; stroke-width: 1.5;"></i></div>
+             <h4 style="font-size: 1.25rem; margin-bottom: 12px; font-weight: 600;">Hybrid Video</h4>
+             <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.5;">4K video streaming and recording setup available.</p>
+          </div>
+          <!-- Card 4 -->
+          <div style="background: var(--bg-base); border: 1px solid var(--border); padding: 32px; border-radius: 12px; transition: transform 0.4s ease; transform: translateY(40px); box-shadow: var(--shadow-sm);" onmouseover="this.style.transform='translateY(35px)'; this.style.borderColor='var(--accent-light)';" onmouseout="this.style.transform='translateY(40px)'; this.style.borderColor='var(--border)';">
+             <div style="color: var(--accent-light); margin-bottom: 20px;"><i data-lucide="sliders" style="width: 48px; height: 48px; stroke-width: 1.5;"></i></div>
+             <h4 style="font-size: 1.25rem; margin-bottom: 12px; font-weight: 600;">Post Editing</h4>
+             <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.5;">Final sound mixing, levelling, and mastering.</p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- About (Vigraph Structure) -->
+  <section id="about" class="section-padding" style="padding-top: 100px; padding-bottom: 100px;">
+    <div class="container" style="display: flex; gap: 80px; flex-wrap: wrap; align-items: center;">
       <div style="flex: 1; min-width: 300px;">
-        <h2 style="font-size: 2.2rem; margin-bottom: 24px; color: var(--text-primary);">A Studio Built for Modern Storytellers</h2>
-        <p style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 24px;">
-          Located at the KNUST E-Learning Centre, our podcast studio is equipped with premium audio interfaces, studio-grade microphones, and sound isolation treatments.
-        </p>
-        <p style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 32px;">
-          Whether you're hosting an interview, teaching a concept, or sharing your stories, we provide the perfect acoustic environment to let your voice shine without distractions.
-        </p>
-        <a href="login.html" class="btn btn-ghost">View Availability</a>
+        <img src="imgs/gallery_mic_1776190601815.png" style="width: 100%; border-radius: 12px; object-fit: cover; aspect-ratio: 4/5; box-shadow: 0 20px 40px rgba(0,0,0,0.8);" alt="Studio Microphone Close Up" />
       </div>
-    </div>
-  </section>
+      <div style="flex: 1.2; min-width: 300px;">
+        <h3 style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 16px; font-weight: 600; letter-spacing: 2px;">About Us</h3>
+        <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 32px; color: var(--text-primary); line-height: 1.1; font-weight: 700; letter-spacing: -0.02em;">We Always Make <br>The Best Track.</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 48px; font-size: 1.1rem; line-height: 1.6;">Located centrally at the KNUST E-Learning Centre, our acoustic environment allows faculty and creators to completely focus on the conversation, devoid of technical distractions.</p>
+        
+        <!-- Progress Bars -->
+        <div style="margin-bottom: 40px;">
+          <div style="margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+              <span style="font-weight: 600; font-size: 0.95rem;">Acoustic Quality</span>
+              <span style="color: var(--text-muted); font-size: 0.9rem;">99%</span>
+            </div>
+            <div style="width: 100%; background: var(--border); height: 4px; border-radius: 2px;">
+              <div style="width: 99%; background: var(--text-primary); height: 100%; box-shadow: 0 0 10px rgba(255,255,255,0.2);"></div>
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+              <span style="font-weight: 600; font-size: 0.95rem;">Equipment Tier</span>
+              <span style="color: var(--text-muted); font-size: 0.9rem;">100%</span>
+            </div>
+            <div style="width: 100%; background: var(--border); height: 4px; border-radius: 2px;">
+              <div style="width: 100%; background: var(--text-primary); height: 100%; box-shadow: 0 0 10px rgba(255,255,255,0.2);"></div>
+            </div>
+          </div>
+        </div>
 
-  <!-- Services Section -->
-  <section id="services" class="section-padding">
-    <div class="container">
-      <div class="section-title">
-        <h2>Our Services</h2>
-        <p>Everything you need to record high-quality audio sessions</p>
-      </div>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon"><i data-lucide="mic"></i></div>
-          <h3>One-on-One Recording</h3>
-          <p>Perfect for solo hosts, narrations, voiceovers, or single guest interviews. Enjoy zero latency monitoring and pristine audio capture.</p>
+        <!-- Stat Row -->
+        <div style="display: flex; gap: 48px; border-top: 1px solid var(--border); padding-top: 40px;">
+           <div>
+             <h3 style="font-size: 2.5rem; margin-bottom: 8px; font-weight: 700;">20+</h3>
+             <p style="color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px;">Departments</p>
+           </div>
+           <div>
+             <h3 style="font-size: 2.5rem; margin-bottom: 8px; font-weight: 700;">100+</h3>
+             <p style="color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px;">Projects Done</p>
+           </div>
+           <div>
+             <h3 style="font-size: 2.5rem; margin-bottom: 8px; font-weight: 700;">300+</h3>
+             <p style="color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px;">Hours Recorded</p>
+           </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i data-lucide="users"></i></div>
-          <h3>Group Sessions</h3>
-          <p>Host dynamic conversations with up to 4 participants. We provide multi-track recording so every voice can be mixed independently.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i data-lucide="audio-waveform"></i></div>
-          <h3>Professional Lighting & Audio</h3>
-          <p>Fully treated acoustics, customizable ambient lighting, and technical staff available to ensure your session runs flawlessly.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works Section -->
-  <section id="how-it-works" class="section-padding" style="background: var(--bg-hover);">
-    <div class="container">
-      <div class="section-title">
-        <h2>How It Works</h2>
-        <p>Your journey from idea to published podcast in 3 simple steps</p>
-      </div>
-      <div class="feature-grid" style="position: relative;">
-        <div class="feature-card" style="box-shadow: none; border-color: transparent;">
-          <div class="step-number" style="width: 48px; height: 48px; font-size: 1.2rem; margin: 0 auto 24px;">1</div>
-          <h3>Book a Session</h3>
-          <p>Choose your preferred date, select an open time slot, and tell us about your podcast idea through our booking form.</p>
-        </div>
-        <div class="feature-card" style="box-shadow: none; border-color: transparent;">
-          <div class="step-number" style="width: 48px; height: 48px; font-size: 1.2rem; margin: 0 auto 24px;">2</div>
-          <h3>Record In-Studio</h3>
-          <p>Arrive at the KNUST E-Learning Centre. Our team will help you set up and ensure maximum sound quality.</p>
-        </div>
-        <div class="feature-card" style="box-shadow: none; border-color: transparent;">
-          <div class="step-number" style="width: 48px; height: 48px; font-size: 1.2rem; margin: 0 auto 24px;">3</div>
-          <h3>Edit & Publish</h3>
-          <p>Receive your audio files instantly or utilize our post-production capabilities to edit and finalize your episode.</p>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: 40px;">
-        <a href="login.html" class="btn btn-primary btn-lg">Start the Process</a>
       </div>
     </div>
   </section>
