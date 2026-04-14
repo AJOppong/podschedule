@@ -3,7 +3,7 @@
   const STORAGE_KEY = 'kecpodschedule-theme';
 
   function getTheme() {
-    return localStorage.getItem(STORAGE_KEY) || 'light';
+    return localStorage.getItem(STORAGE_KEY) || 'dark';
   }
 
   function applyTheme(theme) {

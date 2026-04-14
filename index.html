@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,7 @@
     }
     
     .public-nav {
-      background: rgba(var(--bg-surface-rgb, 255, 255, 255), 0.85); /* fallback */
+      background: var(--glass-bg);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 40px;
@@ -248,14 +248,14 @@
   <section class="hero-section">
     <div class="hero-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 60px; text-align: left; max-width: 1200px; flex-wrap: wrap;">
       <div style="flex: 1; min-width: 300px;">
-        <div class="hero-badge" style="background: rgba(255,255,255,0.8); backdrop-filter: blur(10px);">E-Learning Centre</div>
+        <div class="hero-badge" style="background: var(--glass-light); backdrop-filter: blur(10px);">E-Learning Centre</div>
         <h1 style="font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 24px;">Elevate Your <span style="background: linear-gradient(135deg, var(--accent), #ff4d4d); -webkit-background-clip: text; color: transparent;">Voice</span></h1>
         <p style="margin: 0 0 40px 0;">Professional, state-of-the-art podcast recording facilities for students, faculty, and content creators. Step in with an idea, walk out with a fully recorded episode.</p>
         <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
           <a href="login.html" class="btn btn-primary btn-lg" style="padding: 16px 36px; font-size: 1.1rem; border-radius: 100px; box-shadow: 0 8px 25px rgba(163,0,0,0.3);">
             Book Now <i data-lucide="arrow-right" style="margin-left: 8px;"></i>
           </a>
-          <a href="#how-it-works" class="btn btn-ghost btn-lg" style="padding: 16px 36px; font-size: 1.1rem; border-radius: 100px; background: rgba(255,255,255,0.5); backdrop-filter: blur(10px);">
+          <a href="#how-it-works" class="btn btn-ghost btn-lg" style="padding: 16px 36px; font-size: 1.1rem; border-radius: 100px; background: var(--glass-light); backdrop-filter: blur(10px);">
             Learn More
           </a>
         </div>
