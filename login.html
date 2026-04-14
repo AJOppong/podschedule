@@ -144,28 +144,75 @@
         </div>
         <div class="login-subtitle">Welcome back. Please sign in to continue.</div>
 
-        <form id="loginForm">
+        <div class="auth-tabs" style="display: flex; gap: 8px; margin-bottom: 24px; background: var(--bg-elevated); padding: 4px; border-radius: var(--radius-md); border: 1px solid var(--border);">
+            <button id="tabGuest" class="btn active" style="flex: 1; justify-content: center; background: var(--bg-surface); box-shadow: var(--shadow-sm); color: var(--text-primary);">Guest</button>
+            <button id="tabAdmin" class="btn" style="flex: 1; justify-content: center; background: transparent; color: var(--text-secondary); border: none;">Admin</button>
+        </div>
+
+        <!-- Guest Section -->
+        <div id="guestSection">
+            <p class="login-subtitle" style="margin-bottom:24px;">Proceed without an account to schedule your podcast recording session.</p>
+            <button id="guestLoginBtn" class="btn btn-primary login-btn" style="box-shadow: none;">Continue to Booking Form</button>
+        </div>
+
+        <!-- Admin Section -->
+        <form id="loginForm" style="display: none;">
             <div class="form-group">
-                <label class="form-label" for="email">Email Address</label>
-                <input type="email" id="email" class="form-control" required placeholder="name@company.com" autocomplete="email">
+                <label class="form-label" for="email">Staff Email Address</label>
+                <input type="email" id="email" class="form-control" required placeholder="name@kecpodschedule.com" autocomplete="email">
             </div>
             <div class="form-group">
                 <label class="form-label" for="password">Password</label>
                 <input type="password" id="password" class="form-control" required placeholder="••••••••" autocomplete="current-password">
             </div>
-            <button type="submit" class="btn btn-primary login-btn">Sign In</button>
+            <button type="submit" class="btn btn-primary login-btn">Sign In to Dashboard</button>
+            
+            <div class="demo-credentials" style="margin-top: 24px; padding: 12px; font-size: 0.8rem;">
+                <strong>Demo:</strong> admin@kecpodschedule.com / Any password
+            </div>
         </form>
-
-        <div class="demo-credentials">
-            <strong><i data-lucide="info" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Demo Access</strong><br><br>
-            • Admin: <strong>admin@kecpodschedule.com</strong><br>
-            • Client: <strong>Any other email</strong><br>
-            • Password: <em>Anything</em>
-        </div>
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
+        const tabGuest = document.getElementById('tabGuest');
+        const tabAdmin = document.getElementById('tabAdmin');
+        const guestSection = document.getElementById('guestSection');
+        const adminForm = document.getElementById('loginForm');
+
+        // Tab Switching
+        tabGuest.addEventListener('click', () => {
+            tabGuest.style.background = 'var(--bg-surface)';
+            tabGuest.style.boxShadow = 'var(--shadow-sm)';
+            tabGuest.style.color = 'var(--text-primary)';
+            
+            tabAdmin.style.background = 'transparent';
+            tabAdmin.style.boxShadow = 'none';
+            tabAdmin.style.color = 'var(--text-secondary)';
+
+            guestSection.style.display = 'block';
+            adminForm.style.display = 'none';
+        });
+
+        tabAdmin.addEventListener('click', () => {
+            tabAdmin.style.background = 'var(--bg-surface)';
+            tabAdmin.style.boxShadow = 'var(--shadow-sm)';
+            tabAdmin.style.color = 'var(--text-primary)';
+            
+            tabGuest.style.background = 'transparent';
+            tabGuest.style.boxShadow = 'none';
+            tabGuest.style.color = 'var(--text-secondary)';
+
+            adminForm.style.display = 'block';
+            guestSection.style.display = 'none';
+        });
+
+        // Guest Login execution
+        document.getElementById('guestLoginBtn').addEventListener('click', () => {
+            window.PodAuth.login('guest@user.com', 'guest');
+        });
+
+        // Admin Login execution
+        adminForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
