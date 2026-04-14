@@ -72,9 +72,9 @@
     previewSubject.textContent = subject;
     previewBody.textContent = body;
 
-    // Attach to mailto link
-    const mailtoLink = `mailto:${booking.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    sendReminderBtn.href = mailtoLink;
+    // Build Gmail compose URL (opens Gmail in browser with fields pre-filled)
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(booking.email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    sendReminderBtn.href = gmailUrl;
 
     // Show preview section
     previewSection.style.display = 'block';
