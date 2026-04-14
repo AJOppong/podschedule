@@ -121,6 +121,21 @@
       70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
       100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
     }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.15; filter: blur(20px); }
+      50% { opacity: 0.3; filter: blur(35px); }
+      100% { opacity: 0.15; filter: blur(20px); }
+    }
+    @keyframes scrollBounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+      40% { transform: translateY(-15px) translateX(-50%); }
+      60% { transform: translateY(-7px) translateX(-50%); }
+    }
     
     .container {
       max-width: 1200px;
@@ -258,7 +273,7 @@
   <!-- Hero Section -->
   <section class="hero-section" style="padding-top: 80px; padding-bottom: 0;">
     <div class="container" style="text-align: center; max-width: 900px;">
-      <h1 style="font-size: clamp(3.5rem, 8vw, 6.5rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; color: var(--text-primary); font-weight: 800;">Elevate Your <br><span style="color: var(--accent-light);">Voice</span></h1>
+      <h1 style="font-size: clamp(3.5rem, 8vw, 6.5rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; color: var(--text-primary); font-weight: 800;">Elevate Your <br><span style="background: linear-gradient(270deg, var(--accent), #ff8888, var(--accent)); background-size: 200% 200%; -webkit-background-clip: text; color: transparent; animation: gradientShift 6s ease infinite;">Voice</span></h1>
       <p style="font-size: 1.15rem; color: var(--text-secondary); margin: 0 auto 40px; max-width: 500px;">Step into the modern KNUST recording studio. A state-of-the-art environment built for faculty, students, and creators.</p>
       
       <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 60px;">
@@ -267,7 +282,7 @@
       </div>
       
       <div style="position: relative; width: 100%; border-radius: 24px 24px 0 0; overflow: hidden; height: clamp(300px, 50vh, 600px); display: flex; align-items: flex-end;">
-        <div style="position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-base) 0%, transparent 80%); z-index: 2;"></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-base) 0%, transparent 80%); z-index: 2; animation: pulseGlow 8s ease-in-out infinite;"></div>
         
         <!-- Floating Active Badges -->
         <div style="position: absolute; top: 40px; right: 40px; z-index: 3; background: var(--glass-bg); padding: 12px 20px; border-radius: 100px; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-lg); animation: float 6s ease-in-out infinite;">
@@ -279,6 +294,17 @@
           <div style="width: 10px; height: 10px; background: var(--accent-light); border-radius: 50%; animation: pulse 1.5s infinite;"></div>
           <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Recording Session Live</span>
         </div>
+
+        <div style="position: absolute; top: 40px; left: 40px; z-index: 3; background: var(--glass-bg); padding: 12px 20px; border-radius: 100px; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-lg); animation: float 7s ease-in-out infinite 1s;">
+          <div style="width: 10px; height: 10px; background: #facc15; border-radius: 50%; animation: pulse 2.5s infinite;"></div>
+          <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Next Slot: 2:00 PM</span>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <a href="#services" style="position: absolute; bottom: 40px; left: 50%; z-index: 4; display: flex; justify-content: center; align-items: center; width: 48px; height: 64px; border: 2px solid rgba(255,255,255,0.2); border-radius: 30px; animation: scrollBounce 2s infinite; color: white;">
+          <i data-lucide="mouse" style="width: 24px; height: 24px; opacity: 0.8;"></i>
+          <div style="position: absolute; top: 12px; width: 4px; height: 8px; background: white; border-radius: 4px; animation: float 1.5s infinite;"></div>
+        </a>
 
         <img src="imgs/hero_studio_1776190400193.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1;" alt="Studio Hero Graphic" />
       </div>
