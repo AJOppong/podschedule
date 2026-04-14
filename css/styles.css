@@ -4,12 +4,12 @@
 :root {
   /* LIGHT THEME (Figma Reference) */
   --bg-base:        #fcfcfd;
-  --bg-surface:     #ffffff;
+  --bg-surface:     #f8fafc;
   --bg-elevated:    #ffffff;
   --bg-card:        #ffffff;
-  --bg-hover:       #f3f4f6;
-  --border:         #eaebf0;
-  --border-light:   #f3f4f6;
+  --bg-hover:       #f1f5f9;
+  --border:         #e2e8f0;
+  --border-light:   #f1f5f9;
 
   --accent:         #a30000; /* KNUST Red */
   --accent-light:   #d63333;
