@@ -111,6 +111,17 @@
       padding: 80px 32px;
     }
     
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+    
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -255,9 +266,21 @@
         <a href="#about" class="btn btn-ghost btn-lg" style="padding: 16px 40px; font-size: 1.1rem; border-radius: 8px; border: 1px solid var(--border);">Learn More</a>
       </div>
       
-      <div style="position: relative; width: 100%; border-radius: 24px 24px 0 0; overflow: hidden; height: clamp(300px, 50vh, 600px); display: flex; align-items: flex-end; background: #000;">
+      <div style="position: relative; width: 100%; border-radius: 24px 24px 0 0; overflow: hidden; height: clamp(300px, 50vh, 600px); display: flex; align-items: flex-end;">
         <div style="position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-base) 0%, transparent 80%); z-index: 2;"></div>
-        <img id="heroImage" src="imgs/hero_studio_1776190400193.png" style="width: 100%; height: 130%; top: -15%; object-fit: cover; position: absolute; z-index: 1; transition: transform 0.1s ease-out; will-change: transform;" alt="Studio Hero Graphic" />
+        
+        <!-- Floating Active Badges -->
+        <div style="position: absolute; top: 40px; right: 40px; z-index: 3; background: var(--glass-bg); padding: 12px 20px; border-radius: 100px; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-lg); animation: float 6s ease-in-out infinite;">
+          <div style="width: 10px; height: 10px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite;"></div>
+          <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Studio M1 Available</span>
+        </div>
+
+        <div style="position: absolute; bottom: 80px; left: 40px; z-index: 3; background: var(--glass-bg); padding: 12px 20px; border-radius: 100px; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-lg); animation: float 5s ease-in-out infinite reverse;">
+          <div style="width: 10px; height: 10px; background: var(--accent-light); border-radius: 50%; animation: pulse 1.5s infinite;"></div>
+          <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">Recording Session Live</span>
+        </div>
+
+        <img src="imgs/hero_studio_1776190400193.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1;" alt="Studio Hero Graphic" />
       </div>
     </div>
   </section>
@@ -398,15 +421,6 @@
         });
       });
     });
-
-    // Parallax effect for the hero image
-    const heroImage = document.getElementById('heroImage');
-    if (heroImage) {
-        window.addEventListener('scroll', () => {
-            const scrollPos = window.scrollY;
-            heroImage.style.transform = `translateY(${scrollPos * 0.35}px)`;
-        });
-    }
   </script>
 </body>
 </html>
