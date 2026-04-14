@@ -11,10 +11,10 @@
   --border:         #eaebf0;
   --border-light:   #f3f4f6;
 
-  --accent:         #6366f1; /* Indigo */
-  --accent-light:   #818cf8;
-  --accent-glow:    rgba(99, 102, 241, 0.15);
-  --accent-dim:     rgba(99, 102, 241, 0.08);
+  --accent:         #a30000; /* KNUST Red */
+  --accent-light:   #d63333;
+  --accent-glow:    rgba(163, 0, 0, 0.15);
+  --accent-dim:     rgba(163, 0, 0, 0.08);
 
   --text-primary:   #111827;
   --text-secondary: #4b5563;
@@ -61,10 +61,10 @@
   --border:         #2a2d36;
   --border-light:   #333640;
 
-  --accent:         #818cf8;
-  --accent-light:   #a5b4fc;
-  --accent-glow:    rgba(129, 140, 248, 0.15);
-  --accent-dim:     rgba(129, 140, 248, 0.1);
+  --accent:         #d63333;
+  --accent-light:   #ff6666;
+  --accent-glow:    rgba(214, 51, 51, 0.15);
+  --accent-dim:     rgba(214, 51, 51, 0.1);
 
   --text-primary:   #f3f4f6;
   --text-secondary: #9ca3af;
@@ -396,7 +396,7 @@ tbody tr:hover { background: var(--bg-hover); }
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--accent-dim); border: 1px solid rgba(124,92,252,0.3);
+  background: var(--accent-dim); border: 1px solid rgba(163, 0, 0,0.3);
   color: var(--accent-light); border-radius: 100px;
   padding: 6px 16px; font-size: 0.8rem; font-weight: 600;
   margin-bottom: 24px;
@@ -413,7 +413,7 @@ tbody tr:hover { background: var(--bg-hover); }
 .step-number {
   display: inline-flex; align-items: center; justify-content: center;
   width: 28px; height: 28px;
-  background: var(--accent-dim); border: 1px solid rgba(124,92,252,0.3);
+  background: var(--accent-dim); border: 1px solid rgba(163, 0, 0,0.3);
   border-radius: 50%; color: var(--accent-light);
   font-size: 0.8rem; font-weight: 700; margin-right: 10px;
 }
@@ -422,7 +422,7 @@ tbody tr:hover { background: var(--bg-hover); }
 .confirm-wrapper {
   min-height: 100vh; display: flex; align-items: center; justify-content: center;
   padding: 40px 24px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(124,92,252,0.15) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(163, 0, 0,0.15) 0%, transparent 60%);
 }
 .confirm-card { max-width: 560px; width: 100%; }
 .confirm-icon {

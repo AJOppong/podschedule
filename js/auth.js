@@ -25,7 +25,7 @@
             if (role === 'admin') {
                 window.location.replace('admin.html');
             } else {
-                window.location.replace('index.html');
+                window.location.replace('book.html');
             }
         },
 
@@ -46,7 +46,7 @@
     }
 
     if (session && session.role !== 'admin' && isAdminRoute) {
-        window.location.replace('index.html');
+        window.location.replace('book.html');
         return;
     }
 
