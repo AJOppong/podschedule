@@ -102,6 +102,10 @@
             font-size: 1rem;
             font-weight: 600;
             margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         .demo-credentials {
@@ -120,16 +124,28 @@
         }
 
         /* Top right theme toggle for the login page */
-        .top-nav {
+        .top-nav-right {
             position: absolute;
             top: 24px;
             right: 32px;
+        }
+
+        .top-nav-left {
+            position: absolute;
+            top: 24px;
+            left: 32px;
         }
     </style>
 </head>
 <body>
 
-    <div class="top-nav">
+    <div class="top-nav-left">
+        <a href="index.html" class="icon-btn" title="Back to Home" style="text-decoration: none;">
+            <i data-lucide="arrow-left"></i>
+        </a>
+    </div>
+
+    <div class="top-nav-right">
         <button class="icon-btn" id="themeToggleBtn" title="Toggle Theme">
             <i data-lucide="moon"></i>
         </button>
@@ -218,6 +234,9 @@
             const password = document.getElementById('password').value;
             window.PodAuth.login(email, password);
         });
+
+        // Initialize Icons
+        lucide.createIcons();
     </script>
 </body>
 </html>

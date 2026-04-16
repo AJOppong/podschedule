@@ -65,7 +65,7 @@
     // Build template components
     const subject = `Reminder: Upcoming Podcast Session - ${booking.podcastTitle}`;
     
-    const body = `Hello ${booking.name},\n\nThis is a quick reminder about your upcoming podcast recording session with Kecpodschedule Studio.\n\nHere are the details for your session:\n• Podcast Title: ${booking.podcastTitle}\n• Date: ${niceDate}\n• Time: ${booking.time}\n• Venue: ${VENUE}\n\nPlease arrive 10 minutes early so we can test the audio levels. We look forward to creating with you!\n\nBest regards,\nKecpodschedule Admin\nStudio Team`;
+    const body = `Hello ${booking.name},\n\nThis is a quick reminder about your upcoming podcast recording session with Kecpodschedule Studio.\n\nHere are the details for your session:\n• Podcast Title: ${booking.podcastTitle}\n• Date: ${niceDate}\n• Time: ${booking.time}\n• Venue: ${VENUE}\n\nPlease arrive 30 minutes early so we can test the audio levels. We look forward to creating with you!\n\nBest regards,\nKecpodschedule Admin\nStudio Team`;
 
     // Populate UI preview
     previewTo.textContent = booking.email;
