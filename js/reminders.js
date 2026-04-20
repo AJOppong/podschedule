@@ -65,7 +65,7 @@
     // Build template components
     const subject = `Reminder: Upcoming Podcast Session - ${booking.podcastTitle}`;
     
-    const body = `Hello ${booking.name},\n\nThis is a quick reminder about your upcoming podcast recording session with KEC Podcast Studios.\n\nHere are the details for your session:\n• Podcast Title: ${booking.podcastTitle}\n• Date: ${niceDate}\n• Time: ${booking.time}\n• Venue: ${VENUE}\n\nPlease arrive 30 minutes early so we can test the audio levels. We look forward to creating with you!\n\nBest regards,\nKEC Podcast Studios Admin\nStudio Team`;
+    const body = `Hello ${booking.name},\n\nThis is a quick reminder about your upcoming podcast recording session with KEC Podcast Studios.\n\nHere are the details for your session:\n• Podcast Title: ${booking.podcastTitle}\n• Date: ${niceDate}\n• Time: ${booking.time}\n• Venue: ${VENUE}\n\nPlease note our Studio Etiquette:\n\nDo's:\n• Arrive 15 minutes before your scheduled session to prep.\n• Bring scripts on a digital device or non-crinkly paper.\n• Keep hydrated (water only) prior to recording.\n• Communicate special requirements in advance.\n\nDon'ts:\n• No food or sticky drinks in the studio.\n• Avoid noisy jewelry or rustling clothing.\n• Do not adjust microphones without assistance.\n• Keep mobile phones on silent.\n\nWe look forward to creating with you!\n\nBest regards,\nKEC Podcast Studios Admin\nStudio Team`;
 
     // Populate UI preview
     previewTo.textContent = booking.email;
