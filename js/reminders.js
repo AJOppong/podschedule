@@ -67,7 +67,7 @@
     
     const pngLink = window.location.origin + '/imgs/studio_etiquette.png';
     const pdfLink = window.location.origin + '/imgs/studio_etiquette.pdf';
-    const body = `Hello ${booking.name},\n\nThis is a quick reminder about your upcoming podcast recording session with KEC Podcast Studios.\n\nHere are the details for your session:\n• Podcast Title: ${booking.podcastTitle}\n• Date: ${niceDate}\n• Time: ${booking.time}\n• Venue: ${VENUE}\n\nIMPORTANT: Please review our Studio Etiquette (Do's and Don'ts) before arriving:\n\n• View Infographic (Image): ${pngLink}\n• Download Document (PDF): ${pdfLink}\n\n(Note to Admin: You can also manually attach the PDF to this email before sending.)\n\nWe look forward to creating with you!\n\nBest regards,\nKEC Podcast Studios Admin\nStudio Team`;
+    const body = `Hello ${booking.name},\n\nThis is a quick reminder about your upcoming podcast recording session with KEC Podcast Studios.\n\nHere are the details for your session:\n• Podcast Title: ${booking.podcastTitle}\n• Date: ${niceDate}\n• Time: ${booking.time}\n• Venue: ${VENUE}\n\nIMPORTANT: Please review our Studio Etiquette (Do's and Don'ts) before arriving:\n\n• View Infographic (Image): ${pngLink}\n• Download Document (PDF): ${pdfLink}\n\nWe look forward to creating with you!\n\nBest regards,\nKEC Podcast Studios Admin\nStudio Team`;
 
     // Populate UI preview
     previewTo.textContent = booking.email;
