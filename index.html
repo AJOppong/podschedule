@@ -400,67 +400,89 @@
     </div>
   </section>
 
-  <!-- Do's and Don'ts Section -->
-  <section id="guidelines" class="section-padding" style="background: var(--bg-surface);">
-    <div class="container">
-      <div class="section-title">
-        <h2>Studio Etiquette</h2>
-        <p>Guidelines for a smooth and professional recording experience</p>
+  <!-- Studio Etiquette (Flyer Style) -->
+  <section id="guidelines" class="section-padding" style="position: relative; background: #ffffff; overflow: hidden; padding-top: 100px; padding-bottom: 100px;">
+    <!-- Abstract Backgrounds -->
+    <div style="position: absolute; top: -10%; left: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(163,0,0,0.08) 0%, transparent 70%); filter: blur(60px); pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -20%; right: -10%; width: 60%; height: 60%; background: radial-gradient(circle, rgba(214,51,51,0.06) 0%, transparent 60%); filter: blur(80px); pointer-events: none;"></div>
+    
+    <div class="container" style="position: relative; z-index: 10; max-width: 1000px;">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <span style="display: inline-block; padding: 6px 16px; border-radius: 100px; background: rgba(163,0,0,0.08); color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Guidelines</span>
+        <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); color: #111827; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">Studio <span style="color: var(--accent);">Etiquette</span></h2>
+        <p style="color: #4b5563; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">A premium recording requires a premium environment. Please observe these rules to ensure the best experience for everyone.</p>
       </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;">
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
         
         <!-- Do's Card -->
-        <div style="flex: 1; min-width: 300px; max-width: 500px; background: var(--bg-card); border: 1px solid #22c55e; border-top: 4px solid #22c55e; border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm);">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
-            <div style="background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 12px; border-radius: 50%;">
+        <div style="background: rgba(255,255,255,0.7); backdrop-filter: blur(16px); border: 1px solid rgba(0,0,0,0.05); border-top: 8px solid #10b981; border-radius: 24px; padding: 48px 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.03); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 40px;">
+            <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(16,185,129,0.1); display: flex; align-items: center; justify-content: center; color: #10b981;">
               <i data-lucide="check-circle" style="width: 28px; height: 28px;"></i>
             </div>
-            <h3 style="font-size: 1.5rem; color: #22c55e;">Do's</h3>
+            <h3 style="font-size: 2rem; font-weight: 800; color: #10b981; margin: 0;">DO'S</h3>
           </div>
-          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
-            <li style="display: flex; align-items: flex-start; gap: 12px;">
-              <i data-lucide="check" style="color: #22c55e; width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;"></i>
-              <span style="color: var(--text-secondary); line-height: 1.5;">Arrive 15 minutes before your scheduled session to prep.</span>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 24px;">
+            <li style="display: flex; align-items: flex-start; gap: 16px;">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(16,185,129,0.1); display: flex; align-items: center; justify-content: center; color: #10b981; flex-shrink: 0; margin-top: 4px;">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+              </div>
+              <span style="color: #4b5563; line-height: 1.6; font-size: 1.05rem; font-weight: 500;">Arrive 15 minutes before your scheduled session to prep.</span>
             </li>
-            <li style="display: flex; align-items: flex-start; gap: 12px;">
-              <i data-lucide="check" style="color: #22c55e; width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;"></i>
-              <span style="color: var(--text-secondary); line-height: 1.5;">Bring scripts on a digital device or printed on non-crinkly paper.</span>
+            <li style="display: flex; align-items: flex-start; gap: 16px;">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(16,185,129,0.1); display: flex; align-items: center; justify-content: center; color: #10b981; flex-shrink: 0; margin-top: 4px;">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+              </div>
+              <span style="color: #4b5563; line-height: 1.6; font-size: 1.05rem; font-weight: 500;">Bring scripts on a digital device or non-crinkly paper.</span>
             </li>
-            <li style="display: flex; align-items: flex-start; gap: 12px;">
-              <i data-lucide="check" style="color: #22c55e; width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;"></i>
-              <span style="color: var(--text-secondary); line-height: 1.5;">Keep hydrated by drinking water prior to your recording to avoid dry mouth.</span>
+            <li style="display: flex; align-items: flex-start; gap: 16px;">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(16,185,129,0.1); display: flex; align-items: center; justify-content: center; color: #10b981; flex-shrink: 0; margin-top: 4px;">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+              </div>
+              <span style="color: #4b5563; line-height: 1.6; font-size: 1.05rem; font-weight: 500;">Keep hydrated (water only) prior to recording.</span>
             </li>
-            <li style="display: flex; align-items: flex-start; gap: 12px;">
-              <i data-lucide="check" style="color: #22c55e; width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;"></i>
-              <span style="color: var(--text-secondary); line-height: 1.5;">Communicate any special technical requirements in advance.</span>
+            <li style="display: flex; align-items: flex-start; gap: 16px;">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(16,185,129,0.1); display: flex; align-items: center; justify-content: center; color: #10b981; flex-shrink: 0; margin-top: 4px;">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+              </div>
+              <span style="color: #4b5563; line-height: 1.6; font-size: 1.05rem; font-weight: 500;">Communicate special requirements in advance.</span>
             </li>
           </ul>
         </div>
 
         <!-- Don'ts Card -->
-        <div style="flex: 1; min-width: 300px; max-width: 500px; background: var(--bg-card); border: 1px solid #ef4444; border-top: 4px solid #ef4444; border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm);">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
-            <div style="background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: 12px; border-radius: 50%;">
+        <div style="background: rgba(255,255,255,0.7); backdrop-filter: blur(16px); border: 1px solid rgba(0,0,0,0.05); border-top: 8px solid var(--accent); border-radius: 24px; padding: 48px 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.03); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 40px;">
+            <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(163,0,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent);">
               <i data-lucide="x-circle" style="width: 28px; height: 28px;"></i>
             </div>
-            <h3 style="font-size: 1.5rem; color: #ef4444;">Don'ts</h3>
+            <h3 style="font-size: 2rem; font-weight: 800; color: var(--accent); margin: 0;">DON'TS</h3>
           </div>
-          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
-            <li style="display: flex; align-items: flex-start; gap: 12px;">
-              <i data-lucide="x" style="color: #ef4444; width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;"></i>
-              <span style="color: var(--text-secondary); line-height: 1.5;">Bring food or sticky drinks (like soda or juice) into the studio.</span>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 24px;">
+            <li style="display: flex; align-items: flex-start; gap: 16px;">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(163,0,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; margin-top: 4px;">
+                <i data-lucide="x" style="width: 14px; height: 14px;"></i>
+              </div>
+              <span style="color: #4b5563; line-height: 1.6; font-size: 1.05rem; font-weight: 500;">Bring food or sticky drinks in the studio.</span>
             </li>
-            <li style="display: flex; align-items: flex-start; gap: 12px;">
-              <i data-lucide="x" style="color: #ef4444; width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;"></i>
-              <span style="color: var(--text-secondary); line-height: 1.5;">Wear noisy jewelry or clothing that rustles heavily near the microphones.</span>
+            <li style="display: flex; align-items: flex-start; gap: 16px;">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(163,0,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; margin-top: 4px;">
+                <i data-lucide="x" style="width: 14px; height: 14px;"></i>
+              </div>
+              <span style="color: #4b5563; line-height: 1.6; font-size: 1.05rem; font-weight: 500;">Avoid noisy jewelry or rustling clothing.</span>
             </li>
-            <li style="display: flex; align-items: flex-start; gap: 12px;">
-              <i data-lucide="x" style="color: #ef4444; width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;"></i>
-              <span style="color: var(--text-secondary); line-height: 1.5;">Touch or adjust the microphones without the engineer's assistance.</span>
+            <li style="display: flex; align-items: flex-start; gap: 16px;">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(163,0,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; margin-top: 4px;">
+                <i data-lucide="x" style="width: 14px; height: 14px;"></i>
+              </div>
+              <span style="color: #4b5563; line-height: 1.6; font-size: 1.05rem; font-weight: 500;">Do not adjust microphones without assistance.</span>
             </li>
-            <li style="display: flex; align-items: flex-start; gap: 12px;">
-              <i data-lucide="x" style="color: #ef4444; width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;"></i>
-              <span style="color: var(--text-secondary); line-height: 1.5;">Leave your mobile phone ringtones on; please set devices to silent.</span>
+            <li style="display: flex; align-items: flex-start; gap: 16px;">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(163,0,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; margin-top: 4px;">
+                <i data-lucide="x" style="width: 14px; height: 14px;"></i>
+              </div>
+              <span style="color: #4b5563; line-height: 1.6; font-size: 1.05rem; font-weight: 500;">Keep mobile phones on silent or airplane mode.</span>
             </li>
           </ul>
         </div>
