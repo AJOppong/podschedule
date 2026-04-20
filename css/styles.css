@@ -515,6 +515,10 @@ tbody tr:hover { background: var(--bg-hover); }
   h1 { font-size: 2rem; }
   .stat-grid { grid-template-columns: 1fr 1fr; }
   .mob-menu-btn { display: flex !important; }
+  .search-bar { display: none !important; }
+  .topbar-title p { display: none; }
+  .topbar-actions .btn { padding: 6px 10px; font-size: 0.8rem; }
+  .topbar-actions a span { display: none; } /* hide text inside action links on mobile to save space */
 }
 .mob-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-secondary); border-radius: var(--radius-sm); padding: 8px 10px; font-size: 1.2rem; }
 
