@@ -38,6 +38,15 @@
       margin-bottom: 24px;
     }
     .booking-note-icon { font-size: 1rem; flex-shrink: 0; color: var(--accent-light); }
+
+    /* Date + button row stacks on mobile */
+    @media (max-width: 768px) {
+      #dateInput { width: 100%; max-width: 100%; }
+      .date-input-row { flex-direction: column; align-items: stretch !important; }
+      .date-input-row .btn { width: 100%; justify-content: center; }
+      .booking-body-card { padding: 24px 16px !important; }
+      .booking-hero-title { font-size: 1.6rem !important; }
+    }
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -107,7 +116,7 @@
         <p class="text-muted" style="font-size: 1.1rem;">Fill in your details to reserve a recording slot</p>
       </div>
 
-      <main class="booking-body card" style="width: 100%; max-width: 800px; padding: 40px;">
+      <main class="booking-body card booking-body-card" style="width: 100%; max-width: 800px; padding: 40px;">
         
         <!-- Step 3: Details Form (Moved to top based on mockup) -->
         <section class="booking-section">
@@ -164,7 +173,7 @@
             </div>
             <div class="form-group mb-20">
               <label class="form-label" for="dateInput">Preferred Date *</label>
-              <div style="display:flex; gap:12px;">
+              <div style="display:flex; gap:12px;" class="date-input-row">
                 <input type="date" class="form-control" id="dateInput" style="max-width:300px;" required />
                 <button type="button" class="btn btn-ghost" id="checkDateBtn">Check Slots</button>
               </div>
@@ -194,6 +203,24 @@
 
   <script src="js/data.js?v=3"></script>
   <script src="js/booking.js?v=3"></script>
+  <script>
+    // Mobile sidebar backdrop
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    if (menuBtn && sidebar) {
+      let backdrop = document.createElement('div');
+      backdrop.className = 'sidebar-backdrop';
+      document.body.appendChild(backdrop);
+      menuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        backdrop.classList.toggle('open');
+      });
+      backdrop.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        backdrop.classList.remove('open');
+      });
+    }
+  </script>
 </body>
 </html>
 

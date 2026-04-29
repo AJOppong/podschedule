@@ -501,24 +501,74 @@ tbody tr:hover { background: var(--bg-hover); }
 .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
 
 /* ─── Responsive ─────────────────────────────────────────────────────────────── */
+
+/* Sidebar backdrop overlay (injected by JS) */
+.sidebar-backdrop {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+  backdrop-filter: blur(2px);
+}
+.sidebar-backdrop.open { display: block; }
+
 @media (max-width: 768px) {
   :root { --sidebar-w: 0px; }
-  .sidebar { transform: translateX(-240px); }
-  .sidebar.open { transform: translateX(0); width: 240px; }
+
+  /* Sidebar */
+  .sidebar { transform: translateX(-260px); width: 260px; }
+  .sidebar.open { transform: translateX(0); }
+
+  /* Layout */
   .main-content { margin-left: 0; }
-  .topbar { padding: 16px 20px; }
+  .topbar { padding: 14px 16px; }
   .content-area { padding: 20px 16px; }
+
+  /* Forms */
   .form-row { grid-template-columns: 1fr; }
+
+  /* Calendar */
   .calendar-grid { flex-direction: column; }
   .cal-panel { width: 100%; position: static; }
+
+  /* Booking hero */
   .booking-hero { padding: 40px 20px; }
-  h1 { font-size: 2rem; }
+
+  /* Stats */
   .stat-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Topbar */
   .mob-menu-btn { display: flex !important; }
   .search-bar { display: none !important; }
   .topbar-title p { display: none; }
   .topbar-actions .btn { padding: 6px 10px; font-size: 0.8rem; }
-  .topbar-actions a span { display: none; } /* hide text inside action links on mobile to save space */
+  .topbar-actions a span { display: none; }
+
+  /* Modal */
+  .modal { padding: 24px 20px; width: 95%; }
+
+  /* Toast */
+  .toast-container { bottom: 16px; right: 12px; left: 12px; }
+  .toast { min-width: unset; max-width: 100%; width: 100%; }
+
+  /* Calendar cells */
+  .cal-day { min-height: 44px; padding: 4px; font-size: 0.8rem; }
+  .cal-weekday { font-size: 0.65rem; padding: 4px 0; }
+
+  /* Slot grid – fewer columns on mobile */
+  .slot-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+}
+
+/* Extra small phones (< 480px) */
+@media (max-width: 480px) {
+  .stat-grid { grid-template-columns: 1fr; }
+  .content-area { padding: 16px 12px; }
+  .topbar { padding: 12px 14px; }
+  .card { padding: 16px; }
+  .cal-day { min-height: 36px; padding: 2px; }
+  .cal-weekday { font-size: 0.6rem; }
+  .slot-grid { grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); }
+  .confirm-wrapper { padding: 24px 12px; }
 }
 .mob-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-secondary); border-radius: var(--radius-sm); padding: 8px 10px; font-size: 1.2rem; }
 

@@ -10,6 +10,12 @@
     <script src="js/auth.js?v=4"></script>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @media (max-width: 768px) {
+      .booking-body { padding: 24px 16px !important; }
+      h1 { font-size: 1.8rem !important; }
+    }
+  </style>
 </head>
 <body>
 <div class="page-wrapper">
@@ -110,5 +116,23 @@
 
 <script src="js/data.js?v=4"></script>
 <script src="js/reminders.js?v=4"></script>
+<script>
+  // Mobile sidebar backdrop
+  const menuBtn = document.getElementById('menuBtn');
+  const sidebar = document.getElementById('sidebar');
+  if (menuBtn && sidebar) {
+    let backdrop = document.createElement('div');
+    backdrop.className = 'sidebar-backdrop';
+    document.body.appendChild(backdrop);
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      backdrop.classList.toggle('open');
+    });
+    backdrop.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('open');
+    });
+  }
+</script>
 </body>
 </html>
