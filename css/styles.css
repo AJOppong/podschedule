@@ -500,6 +500,21 @@ tbody tr:hover { background: var(--bg-hover); }
 .w-full { width: 100%; }
 .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
 
+/* Mobile Menu Button Base */
+.mob-menu-btn { 
+  display: none; 
+  background: none; 
+  border: 1px solid var(--border); 
+  color: var(--text-secondary); 
+  border-radius: var(--radius-sm); 
+  padding: 8px 10px; 
+  font-size: 1.2rem; 
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
 /* ─── Responsive ─────────────────────────────────────────────────────────────── */
 
 /* Sidebar backdrop overlay (injected by JS) */
@@ -570,7 +585,7 @@ tbody tr:hover { background: var(--bg-hover); }
   .slot-grid { grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); }
   .confirm-wrapper { padding: 24px 12px; }
 }
-.mob-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-secondary); border-radius: var(--radius-sm); padding: 8px 10px; font-size: 1.2rem; }
+
 
 /* ─── Status Select ──────────────────────────────────────────────────────────── */
 .status-select {
