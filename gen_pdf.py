@@ -28,82 +28,87 @@ def create_etiquette_pdf():
     
     # Do's section (Left)
     c.setFillColor(colors.HexColor("#22c55e"))
-    c.setFont("Helvetica-Bold", 20)
-    c.drawString(70, height - 180, "DO'S")
+    c.setFont("Helvetica-Bold", 18)
+    c.drawString(70, height - 160, "DO'S")
     
     dos = [
-        "Arrive 15 minutes",
-        "before your scheduled",
-        "session to prep.",
+        "Arrive On Time",
+        "(10-15m early)",
         "",
-        "Bring scripts on a",
-        "digital device or",
-        "non-crinkly paper.",
+        "Come Fully Prepared",
+        "(Topics/Script ready)",
         "",
-        "Keep hydrated",
-        "(water only)",
-        "prior to recording.",
+        "Respect Booking Time",
+        "(Start/End on time)",
         "",
-        "Communicate special",
-        "requirements in",
-        "advance."
+        "Follow Instructions",
+        "(Technicians/Staff)",
+        "",
+        "Care for Equipment",
+        "(Handle responsibly)",
+        "",
+        "Maintain Cleanliness",
+        "",
+        "Dress/Behave Well",
+        "",
+        "Speak Respectfully",
+        "(Take turns)",
+        "",
+        "Keep Noise Minimum",
+        "(Silence phones)"
     ]
     
-    c.setFont("Helvetica", 14)
+    c.setFont("Helvetica", 11)
     c.setFillColor(colors.HexColor("#ffffff"))
-    y = height - 220
+    y = height - 190
     for line in dos:
         c.drawString(70, y, line)
-        y -= 25
+        y -= 18
         
     # Don'ts section (Right)
     c.setFillColor(colors.HexColor("#ef4444"))
-    c.setFont("Helvetica-Bold", 20)
-    c.drawString(width/2.0 + 20, height - 180, "DON'TS")
+    c.setFont("Helvetica-Bold", 18)
+    c.drawString(width/2.0 + 20, height - 160, "DON'TS")
     
     donts = [
-        "Don't come late or",
-        "unprepared.",
+        "Don't Come Late or",
+        "Unprepared.",
         "",
-        "No food or drinks",
-        "in the studio.",
+        "No Food or Drinks",
         "(Spills damage gear).",
         "",
-        "No touching gear",
+        "No Touching Gear",
         "without permission.",
-        "(Seek staff help).",
         "",
-        "Don't overcrowd",
-        "(Approved guests",
-        "only).",
+        "Don't Overcrowd",
+        "(Approved guests).",
         "",
-        "No inappropriate",
-        "content/language.",
-        "(Align with values).",
+        "No Inappropriate",
+        "Content/Language.",
         "",
-        "No extensions",
+        "No Extensions",
         "without approval.",
         "",
-        "Don't misuse or",
-        "remove equipment.",
+        "Don't Misuse or",
+        "Remove Equipment.",
         "",
-        "Don't ignore rules.",
+        "Don't Ignore Rules.",
         "(Violations lead to",
         "access suspension)."
     ]
     
-    c.setFont("Helvetica", 12) # Reduced font size to fit more items
+    c.setFont("Helvetica", 11)
     c.setFillColor(colors.HexColor("#ffffff"))
-    y = height - 220
+    y = height - 190
     for line in donts:
         c.drawString(width/2.0 + 20, y, line)
-        y -= 20 # Reduced spacing
+        y -= 18
         
     # Footer
-    c.setFont("Helvetica-Oblique", 11)
+    c.setFont("Helvetica-Oblique", 10)
     c.setFillColor(colors.HexColor("#888888"))
     footer_text = "“The podcast studio is a shared professional space. Your cooperation ensures a smooth experience for everyone.”"
-    c.drawCentredString(width/2.0, 50, footer_text)
+    c.drawCentredString(width/2.0, 40, footer_text)
     
     c.save()
     print(f"Generated {pdf_filename}")
