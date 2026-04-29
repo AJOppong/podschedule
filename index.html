@@ -326,8 +326,8 @@
         flex-wrap: wrap;
       }
 
-      /* Hero floating badges – hide on very small screens */
-      .hero-section [style*="position: absolute"] { display: none !important; }
+      /* Hero floating badges – hide on very small screens to avoid clutter */
+      .hero-section div[style*="z-index: 3"] { display: none !important; }
 
       /* Remove card stagger transforms on mobile for service grid */
       #services [style*="translateY(40px)"] { transform: translateY(0) !important; }
