@@ -62,34 +62,47 @@ def create_etiquette_pdf():
     c.drawString(width/2.0 + 20, height - 180, "DON'TS")
     
     donts = [
-        "No food or sticky",
-        "drinks in the studio.",
-        "(Water is okay).",
+        "Don't come late or",
+        "unprepared.",
         "",
-        "Avoid noisy jewelry",
-        "or rustling clothing",
-        "near the mics.",
+        "No food or drinks",
+        "in the studio.",
+        "(Spills damage gear).",
         "",
-        "Do not adjust",
-        "microphones without",
-        "assistance.",
+        "No touching gear",
+        "without permission.",
         "",
-        "Keep mobile phones",
-        "on silent or airplane",
-        "mode."
+        "Don't overcrowd the",
+        "studio (Approved",
+        "participants only).",
+        "",
+        "No offensive or",
+        "inappropriate",
+        "content/language.",
+        "",
+        "No extensions",
+        "without approval.",
+        "",
+        "Don't misuse or",
+        "remove equipment.",
+        "",
+        "Don't ignore rules.",
+        "(Violations lead to",
+        "suspension)."
     ]
     
-    c.setFont("Helvetica", 14)
+    c.setFont("Helvetica", 12) # Reduced font size to fit more items
     c.setFillColor(colors.HexColor("#ffffff"))
     y = height - 220
     for line in donts:
         c.drawString(width/2.0 + 20, y, line)
-        y -= 25
+        y -= 20 # Reduced spacing
         
     # Footer
-    c.setFont("Helvetica-Oblique", 12)
+    c.setFont("Helvetica-Oblique", 11)
     c.setFillColor(colors.HexColor("#888888"))
-    c.drawCentredString(width/2.0, 50, "Thank you for helping us maintain a professional recording environment!")
+    footer_text = "“The podcast studio is a shared professional space. Your cooperation ensures a smooth experience for everyone.”"
+    c.drawCentredString(width/2.0, 50, footer_text)
     
     c.save()
     print(f"Generated {pdf_filename}")
