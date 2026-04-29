@@ -71,14 +71,15 @@ def create_etiquette_pdf():
         "",
         "No touching gear",
         "without permission.",
+        "(Seek staff help).",
         "",
-        "Don't overcrowd the",
-        "studio (Approved",
-        "participants only).",
+        "Don't overcrowd",
+        "(Approved guests",
+        "only).",
         "",
-        "No offensive or",
-        "inappropriate",
+        "No inappropriate",
         "content/language.",
+        "(Align with values).",
         "",
         "No extensions",
         "without approval.",
@@ -88,7 +89,7 @@ def create_etiquette_pdf():
         "",
         "Don't ignore rules.",
         "(Violations lead to",
-        "suspension)."
+        "access suspension)."
     ]
     
     c.setFont("Helvetica", 12) # Reduced font size to fit more items
