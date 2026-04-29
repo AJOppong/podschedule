@@ -203,11 +203,6 @@
     }
   });
 
-  // ── Mobile Sidebar ─────────────────────────────────────────────────────────
-  document.getElementById('menuBtn').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.toggle('open');
-  });
-
   // ── Init ───────────────────────────────────────────────────────────────────
   async function init() {
     PodData.initData();

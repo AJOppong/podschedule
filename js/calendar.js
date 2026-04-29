@@ -133,11 +133,6 @@
     renderCalendar();
   });
 
-  // ── Mobile Sidebar ─────────────────────────────────────────────────────────
-  document.getElementById('menuBtn').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.toggle('open');
-  });
-
   // ── Init ───────────────────────────────────────────────────────────────────
   PodData.initData();
   renderCalendar();

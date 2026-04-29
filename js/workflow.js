@@ -114,11 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mobile Menu
-    document.getElementById('menuBtn').addEventListener('click', () => {
-        document.getElementById('sidebar').classList.toggle('open');
-    });
-
     // Initial render
     renderBoard();
 });
